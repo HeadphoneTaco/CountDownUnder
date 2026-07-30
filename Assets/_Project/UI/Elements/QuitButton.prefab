@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4316745157808762433}
   - component: {fileID: 359910932922769905}
   m_Layer: 5
-  m_Name: QuitGameButton
+  m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 30}
+  m_SizeDelta: {x: 120, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5245345684384241029
 CanvasRenderer:
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5490784478183984031}
   - component: {fileID: 46584925667134435}
   m_Layer: 5
-  m_Name: QuitGame
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit Game
+  m_text: 'Quit
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b7d54b3beb0c6f4aa647f340db125c9, type: 2}
   m_sharedMaterial: {fileID: -2311042405881356785, guid: 4b7d54b3beb0c6f4aa647f340db125c9, type: 2}
