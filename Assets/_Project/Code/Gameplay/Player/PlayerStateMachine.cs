@@ -43,4 +43,8 @@ public class PlayerStateMachine
     {
         _currentState?.Execute();
     }
+    public void FixedUpdate()
+    {
+        _currentState.FixedUpdate();
+    }
 }

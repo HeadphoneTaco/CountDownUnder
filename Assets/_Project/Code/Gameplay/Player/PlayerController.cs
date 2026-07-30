@@ -8,21 +8,12 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool BatInputHeld;
     [HideInInspector] public Rigidbody2D RB;
     [HideInInspector] public bool CanTransform = true;
+    private float _CurrentBlood;
 
     [Header("Player Stats")]
-    //[SerializeField] public float WalkSpeed;
-    //[SerializeField] public float FlySpeed;
-    //[SerializeField] public float MistSpeed;
-    //[SerializeField] public float MistTime;
-    //[SerializeField] public float MaxBatTime;
-    //[SerializeField] public float BatTimeDrainRate;
-    //[SerializeField] public float _batTimeFillRate;
     private float _currentBatTime;
     [HideInInspector] public float LastBatBreakTime;
-    //[SerializeField] public float TimeAfterBreakToTransform;
-    //[SerializeField] public float TimeBetweenMist;
     private float _lastTransformationTime;
-    //[SerializeField] public float DefaultGravity;
 
     public BatInfo BatInfo;
     public CountInfo CountInfo;
@@ -37,10 +28,8 @@ public class PlayerController : MonoBehaviour
     private int _groundLayerIndex;
     [Header("VictimCheck")]
     [SerializeField] private string _victimLayerName;
-    private int _victimLayerIndex;
-
-    //[Header("EatStats")]
-    //[SerializeField] public Vector2 BoxCastHalf;
+    [HideInInspector] public int VictimLayerIndex;
+    [HideInInspector] public Victim Food;
 
     
     
@@ -49,8 +38,9 @@ public class PlayerController : MonoBehaviour
     {
         MyStateMachine = new PlayerStateMachine(this);
         _groundLayerIndex = LayerMask.GetMask(_groundLayerName);
-        _victimLayerIndex = LayerMask.GetMask(_victimLayerName);
+        VictimLayerIndex = LayerMask.GetMask(_victimLayerName);
         RB = GetComponent<Rigidbody2D>();
+        _CurrentBlood = HitInfo.MaxBloodPoints;
     }
     private void OnEnable()
     {
@@ -68,6 +58,10 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         MyStateMachine.Execute();
+    }
+    public void FixedUpdate()
+    {
+        MyStateMachine.FixedUpdate();
     }
 
     public bool IsGrounded()
@@ -106,5 +100,32 @@ public class PlayerController : MonoBehaviour
         {
             _currentBatTime = Mathf.Clamp( _currentBatTime + BatInfo.BatTimeFillRate * Time.deltaTime, 0, BatInfo.MaxBatTime );
         }
+    }
+    public void ChangeBloodPoints(float ChangeBy)
+    {
+        if (ChangeBy == 0) Debug.Log("No Change in Blood");
+        else if (ChangeBy < 0)
+        {
+            if (_CurrentBlood + ChangeBy < 0)
+            {
+                _CurrentBlood = 0;
+                Die();
+            }
+            else _CurrentBlood += ChangeBy;
+            EventManager.PlayerHurt?.Invoke();
+        }
+        else
+        {
+            if (_CurrentBlood + ChangeBy > HitInfo.MaxBloodPoints)
+            {
+                _CurrentBlood = HitInfo.MaxBloodPoints;
+            }
+            else _CurrentBlood += ChangeBy;
+        }
+        EventManager.PlayerHealthChange?.Invoke(_CurrentBlood/HitInfo.MaxBloodPoints);
+    }
+    private void Die()
+    {
+
     }
 }

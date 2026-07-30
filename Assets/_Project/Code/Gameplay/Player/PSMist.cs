@@ -5,6 +5,8 @@ public class PSMist : IState
     private PlayerController _player;
     private float _mystStep;
     private Vector2 _dashDirection;
+    private Collider2D _victimLayerFind;
+    private Victim _possibleVictim;
     
     public PSMist(PlayerController player)
     {
@@ -63,6 +65,24 @@ public class PSMist : IState
     }
     public void FixedUpdate()
     {
-        // do victim check
+        if (VictimCheck())
+        {
+            _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateEating);
+        }
+    }
+    public bool VictimCheck()
+    {
+        _victimLayerFind = Physics2D.OverlapBox(_player.transform.position, _player.HitInfo.BoxCastHalf, 0, _player.VictimLayerIndex);
+        if ( _victimLayerFind != null)
+        {
+            _possibleVictim = _victimLayerFind.GetComponent<Victim>();
+            if (_possibleVictim != null)
+            {
+                Debug.Log("Found");
+                _player.Food = _possibleVictim;
+                return true;
+            }
+        }
+        return false;
     }
 }

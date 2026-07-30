@@ -7,4 +7,5 @@ public class HitInfo : ScriptableObject
     public float InvincibilityTime;
     public float KnockBackTime;
     public float BloodDrainRate;
+    public float MaxBloodPoints;
 }
