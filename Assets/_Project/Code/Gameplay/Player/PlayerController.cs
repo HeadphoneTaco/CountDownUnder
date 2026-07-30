@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-    public void IncreaseBatTime()
+    public void IncreaseBatTime(float Reducer)
     {
         if (_currentBatTime >= BatInfo.MaxBatTime)
         {
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _currentBatTime = Mathf.Clamp( _currentBatTime + BatInfo.BatTimeFillRate * Time.deltaTime, 0, BatInfo.MaxBatTime );
+            _currentBatTime = Mathf.Clamp( _currentBatTime + BatInfo.BatTimeFillRate * Time.deltaTime / Reducer, 0, BatInfo.MaxBatTime );
         }
     }
     public void ChangeBloodPoints(float ChangeBy)

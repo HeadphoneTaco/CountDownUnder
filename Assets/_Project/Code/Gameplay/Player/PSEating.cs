@@ -34,7 +34,7 @@ public class PSEating : IState
             _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateIdle);
             return;
         }
-        _player.IncreaseBatTime();
+        _player.IncreaseBatTime(1);
         _player.RB.linearVelocity = Vector2.zero;
         DrainBlood();
     }

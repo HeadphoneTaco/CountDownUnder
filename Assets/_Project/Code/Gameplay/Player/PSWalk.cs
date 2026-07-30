@@ -21,7 +21,7 @@ public class PSWalk : IState
     {
         if(!_player.IsGrounded()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
         _player.RB.linearVelocityX = _player.CountInfo.WalkSpeed * _player.DirectionalInput.x; 
-        _player.IncreaseBatTime();
+        _player.IncreaseBatTime(1);
     }
 
     public void Exit()

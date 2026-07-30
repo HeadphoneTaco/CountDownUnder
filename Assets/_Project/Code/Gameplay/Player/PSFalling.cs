@@ -19,6 +19,7 @@ public class PSFalling : IState
 
     public void Execute()
     {
+        _player.IncreaseBatTime(_player.BatInfo.FallingRefillReduce);
         _player.RB.linearVelocityX += _player.CountInfo.FallMoveSpeed * Time.deltaTime * _player.DirectionalInput.x;
         if (_player.IsGrounded())
         {

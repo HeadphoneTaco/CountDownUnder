@@ -20,7 +20,7 @@ public class PSIdle : IState
     public void Execute()
     {
         _player.RB.linearVelocityX = 0;
-        _player.IncreaseBatTime();
+        _player.IncreaseBatTime(1);
     }
 
     public void Exit()

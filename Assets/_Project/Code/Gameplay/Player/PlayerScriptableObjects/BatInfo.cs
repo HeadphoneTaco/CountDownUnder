@@ -7,4 +7,5 @@ public class BatInfo : ScriptableObject
     public float MaxBatTime;
     public float BatTimeDrainRate;
     public float BatTimeFillRate;
+    public float FallingRefillReduce;
 }
