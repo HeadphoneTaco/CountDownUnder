@@ -20,7 +20,7 @@ public class PSBat : IState
     public void Execute()
     {
         if (_player.ReduceBatTime()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateMist);
-        _player.RB.linearVelocity += _player.FlySpeed * Time.deltaTime * _player.DirectionalInput;
+        _player.RB.linearVelocity += _player.BatInfo.FlySpeed * Time.deltaTime * _player.DirectionalInput;
     }
 
     public void Exit()
@@ -28,11 +28,15 @@ public class PSBat : IState
         if (_player != null)
         {
             // transform out of a bat if player isnt null
-            _player.RB.gravityScale = _player.DefaultGravity;
+            _player.RB.gravityScale = _player.CountInfo.DefaultGravity;
         }
     }
     public void ChangeDI(Vector2 direction)
     {
         _player.ChangeDI(direction);
+    }
+    public void FixedUpdate()
+    {
+
     }
 }

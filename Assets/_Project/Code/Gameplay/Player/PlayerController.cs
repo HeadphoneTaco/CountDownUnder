@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,19 +10,24 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool CanTransform = true;
 
     [Header("Player Stats")]
-    [SerializeField] public float WalkSpeed;
-    [SerializeField] public float FlySpeed;
-    [SerializeField] public float MistSpeed;
-    [SerializeField] public float MistTime;
-    [SerializeField] private float _maxBatTime;
-    [SerializeField] private float _batTimeDrainRate;
-    [SerializeField] private float _batTimeFillRate;
+    //[SerializeField] public float WalkSpeed;
+    //[SerializeField] public float FlySpeed;
+    //[SerializeField] public float MistSpeed;
+    //[SerializeField] public float MistTime;
+    //[SerializeField] public float MaxBatTime;
+    //[SerializeField] public float BatTimeDrainRate;
+    //[SerializeField] public float _batTimeFillRate;
     private float _currentBatTime;
     [HideInInspector] public float LastBatBreakTime;
-    [SerializeField] public float TimeAfterBreakToTransform;
-    [SerializeField] public float TimeBetweenMist;
+    //[SerializeField] public float TimeAfterBreakToTransform;
+    //[SerializeField] public float TimeBetweenMist;
     private float _lastTransformationTime;
-    [SerializeField] public float DefaultGravity;
+    //[SerializeField] public float DefaultGravity;
+
+    public BatInfo BatInfo;
+    public CountInfo CountInfo;
+    public MistInfo MistInfo;
+    public HitInfo HitInfo;
 
 
     [Header("GroundCheck")]
@@ -29,9 +35,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _groundCheckDistance;
     [SerializeField] private string _groundLayerName;
     private int _groundLayerIndex;
+    [Header("VictimCheck")]
+    [SerializeField] private string _victimLayerName;
+    private int _victimLayerIndex;
 
-    [Header("EatStats")]
-    [SerializeField] private Vector2 BoxCastHalf;
+    //[Header("EatStats")]
+    //[SerializeField] public Vector2 BoxCastHalf;
 
     
     
@@ -40,13 +49,14 @@ public class PlayerController : MonoBehaviour
     {
         MyStateMachine = new PlayerStateMachine(this);
         _groundLayerIndex = LayerMask.GetMask(_groundLayerName);
+        _victimLayerIndex = LayerMask.GetMask(_victimLayerName);
         RB = GetComponent<Rigidbody2D>();
     }
     private void OnEnable()
     {
         MyStateMachine.Initialize(MyStateMachine.StateIdle);
         EventManager.TransformationChanged += ChangeBatInput;
-        _currentBatTime = _maxBatTime;
+        _currentBatTime = BatInfo.MaxBatTime;
         LastBatBreakTime = Time.time;
     }
     private void OnDisable()
@@ -71,14 +81,14 @@ public class PlayerController : MonoBehaviour
     public void ChangeBatInput(bool batInputHeld)
     {
         BatInputHeld = batInputHeld;
-        if (CanTransform && Time.time - _lastTransformationTime > TimeBetweenMist && Time.time - LastBatBreakTime > TimeAfterBreakToTransform)
+        if (CanTransform && Time.time - _lastTransformationTime > MistInfo.TimeBetweenMist && Time.time - LastBatBreakTime > MistInfo.TimeAfterBreakToTransform)
         {
             MyStateMachine.ChangeState(MyStateMachine.StateMist);
         }
     }
     public bool ReduceBatTime()
     {
-        _currentBatTime = Mathf.Clamp(_currentBatTime - _batTimeDrainRate * Time.deltaTime, 0, _maxBatTime);
+        _currentBatTime = Mathf.Clamp(_currentBatTime - BatInfo.BatTimeDrainRate * Time.deltaTime, 0, BatInfo.MaxBatTime);
         if (_currentBatTime == 0)
         {
             LastBatBreakTime = Time.time;
@@ -88,13 +98,13 @@ public class PlayerController : MonoBehaviour
     }
     public void IncreaseBatTime()
     {
-        if (_currentBatTime >= _maxBatTime)
+        if (_currentBatTime >= BatInfo.MaxBatTime)
         {
-            _currentBatTime = _maxBatTime;
+            _currentBatTime = BatInfo.MaxBatTime;
         }
         else
         {
-            _currentBatTime = Mathf.Clamp( _currentBatTime + _batTimeFillRate * Time.deltaTime, 0, _maxBatTime );
+            _currentBatTime = Mathf.Clamp( _currentBatTime + BatInfo.BatTimeFillRate * Time.deltaTime, 0, BatInfo.MaxBatTime );
         }
     }
 }

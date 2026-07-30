@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74b3ae0265fafa42a6f6b46ef0926a7, type: 3}
+  m_Name: MistInfo1
+  m_EditorClassIdentifier: Assembly-CSharp::MistInfo
+  TimeAfterBreakToTransform: 2
+  TimeBetweenMist: 1
+  MistSpeed: 5
+  MistTime: 0.2

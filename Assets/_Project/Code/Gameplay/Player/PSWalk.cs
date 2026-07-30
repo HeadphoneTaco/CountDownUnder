@@ -20,7 +20,7 @@ public class PSWalk : IState
     public void Execute()
     {
         if(!_player.IsGrounded()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
-        _player.RB.linearVelocityX = _player.WalkSpeed * _player.DirectionalInput.x; 
+        _player.RB.linearVelocityX = _player.CountInfo.WalkSpeed * _player.DirectionalInput.x; 
         _player.IncreaseBatTime();
     }
 
@@ -33,5 +33,9 @@ public class PSWalk : IState
     {
         _player.ChangeDI(direction);
         if (direction.x == 0) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateIdle);
+    }
+    public void FixedUpdate()
+    {
+
     }
 }

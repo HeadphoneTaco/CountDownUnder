@@ -31,15 +31,18 @@ public class PSMist : IState
     public void Execute()
     {
         _mystStep += Time.deltaTime;
-        _player.RB.linearVelocity = _dashDirection * _player.MistSpeed;
-        if (_mystStep > _player.MistTime)
+        _player.RB.linearVelocity = _dashDirection * _player.MistInfo.MistSpeed;
+        if (_mystStep > _player.MistInfo.MistTime)
         {
-            if (_player.BatInputHeld && Time.time - _player.LastBatBreakTime > _player.TimeAfterBreakToTransform)
+            if (_player.BatInputHeld && Time.time - _player.LastBatBreakTime > _player.MistInfo.TimeAfterBreakToTransform)
             {
+                // turn player into bat
+                // play bat partical
                 _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateBat);
             }
             else
             {
+                // play vamp partical
                 // turn player into vamp form
                 _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
             }
@@ -57,5 +60,9 @@ public class PSMist : IState
     public void ChangeDI(Vector2 direction)
     {
         _player.ChangeDI(direction);
+    }
+    public void FixedUpdate()
+    {
+        // do victim check
     }
 }

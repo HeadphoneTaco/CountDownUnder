@@ -19,7 +19,7 @@ public class PSFalling : IState
 
     public void Execute()
     {
-        _player.RB.linearVelocityX += _player.FlySpeed * Time.deltaTime * _player.DirectionalInput.x;
+        _player.RB.linearVelocityX += _player.CountInfo.FallMoveSpeed * Time.deltaTime * _player.DirectionalInput.x;
         if (_player.IsGrounded())
         {
             if (_player.DirectionalInput.x == 0) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateIdle);
@@ -34,6 +34,10 @@ public class PSFalling : IState
     public void ChangeDI(Vector2 direction)
     {
         _player.ChangeDI(direction);
+    }
+    public void FixedUpdate()
+    {
+
     }
 
 }

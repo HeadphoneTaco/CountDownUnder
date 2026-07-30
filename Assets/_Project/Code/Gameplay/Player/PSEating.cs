@@ -28,4 +28,8 @@ public class PSEating : IState
             _player.CanTransform = true;
         }
     }
+    public void FixedUpdate()
+    {
+
+    }
 }
