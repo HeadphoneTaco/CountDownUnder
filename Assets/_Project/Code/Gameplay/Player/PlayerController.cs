@@ -31,12 +31,15 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int VictimLayerIndex;
     [HideInInspector] public Victim Food;
 
-    
-    
+    [Header("Player Animator")]
+    [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _bat;
+    [HideInInspector] public PlayerAnimator MyAnimator;
 
     private void Awake()
     {
         MyStateMachine = new PlayerStateMachine(this);
+        MyAnimator = new PlayerAnimator(_bat, _animator);
         _groundLayerIndex = LayerMask.GetMask(_groundLayerName);
         VictimLayerIndex = LayerMask.GetMask(_victimLayerName);
         RB = GetComponent<Rigidbody2D>();
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         MyStateMachine.Initialize(MyStateMachine.StateIdle);
+        MyAnimator.Initialize(PlayerAnimationState.IDLE);
         EventManager.TransformationChanged += ChangeBatInput;
         _currentBatTime = BatInfo.MaxBatTime;
         LastBatBreakTime = Time.time;
@@ -78,6 +82,13 @@ public class PlayerController : MonoBehaviour
         if (CanTransform && Time.time - _lastTransformationTime > MistInfo.TimeBetweenMist && Time.time - LastBatBreakTime > MistInfo.TimeAfterBreakToTransform)
         {
             MyStateMachine.ChangeState(MyStateMachine.StateMist);
+        }
+    }
+    public void Jump()
+    {
+        if (IsGrounded())
+        {
+            RB.AddForce(Vector2.up * CountInfo.JumpForce, ForceMode2D.Impulse);
         }
     }
     public bool ReduceBatTime()

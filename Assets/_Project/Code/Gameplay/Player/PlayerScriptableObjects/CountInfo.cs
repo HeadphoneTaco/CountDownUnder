@@ -4,6 +4,8 @@ using UnityEngine;
 public class CountInfo : ScriptableObject
 {
     public float WalkSpeed;
+    public float AxelSpeed;
     public float DefaultGravity;
     public float FallMoveSpeed;
+    public float JumpForce;
 }

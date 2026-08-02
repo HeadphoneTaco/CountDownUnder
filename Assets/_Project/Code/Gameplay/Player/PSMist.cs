@@ -22,7 +22,7 @@ public class PSMist : IState
     public void Enter()
     {
         // make particles
-        // change player into myst form
+        _player.MyAnimator.ChangeState(PlayerAnimationState.MIST);
         _player.CanTransform = false;
         EventManager.DIEvent += ChangeDI;
         _mystStep = 0;
