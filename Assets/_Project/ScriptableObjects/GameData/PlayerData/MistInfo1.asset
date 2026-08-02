@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MistInfo1
   m_EditorClassIdentifier: Assembly-CSharp::MistInfo
   TimeAfterBreakToTransform: 2
-  TimeBetweenMist: 3
-  TimeBetweenFallReduce: 0
+  TimeBetweenMist: 1
+  TimeBetweenFallReduce: 3
   MistSpeed: 5
   MistTime: 0.5

@@ -20,7 +20,7 @@ public class PSWalk : IState
 
     public void Execute()
     {
-        if(!_player.IsGrounded()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
+        if(!_player.IsGrounded) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
         _player.RB.linearVelocityX = Mathf.SmoothStep(_player.RB.linearVelocity.x, _player.CountInfo.WalkSpeed * _player.DirectionalInput.x, _player.CountInfo.AxelSpeed);
         _player.IncreaseBatTime(1);
     }

@@ -20,7 +20,7 @@ public class PSIdle : IState
 
     public void Execute()
     {
-        if (!_player.IsGrounded()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
+        if (!_player.IsGrounded) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
         _player.RB.linearVelocityX = Mathf.SmoothStep(_player.RB.linearVelocity.x, 0, _player.CountInfo.AxelSpeed);
         _player.IncreaseBatTime(1);
     }

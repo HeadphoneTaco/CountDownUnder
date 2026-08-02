@@ -19,7 +19,7 @@ public class PSBat : IState
 
     public void Execute()
     {
-        if (_player.ReduceBatTime()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateMist);
+        if (_player.ReduceBatTime()) { _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateMist); }
         _player.RB.linearVelocity += _player.BatInfo.FlySpeed * Time.deltaTime * _player.DirectionalInput;
     }
 
