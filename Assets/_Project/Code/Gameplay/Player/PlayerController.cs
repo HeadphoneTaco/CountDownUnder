@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _bat;
     [HideInInspector] public PlayerAnimator MyAnimator;
 
+    [Header("Player Particles")]
+    [SerializeField] public ParticleSystem MistParticlesPerson;
+    [SerializeField] public ParticleSystem MistParticlesBat;
+    [SerializeField] public ParticleSystem MistParticlesTrail;
+
     private void Awake()
     {
         MyStateMachine = new PlayerStateMachine(this);
@@ -65,6 +70,7 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        if (RB.linearVelocityX != 0) transform.localScale = new Vector3(Mathf.Sign(RB.linearVelocityX), 1, 1);
         MyStateMachine.FixedUpdate();
     }
 

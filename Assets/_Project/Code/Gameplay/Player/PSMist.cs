@@ -7,6 +7,7 @@ public class PSMist : IState
     private Vector2 _dashDirection;
     private Collider2D _victimLayerFind;
     private Victim _possibleVictim;
+    private bool _wasBat = false;
     
     public PSMist(PlayerController player)
     {
@@ -22,6 +23,9 @@ public class PSMist : IState
     public void Enter()
     {
         // make particles
+        _player.MistParticlesTrail.Play();
+        if (_wasBat) _player.MistParticlesBat.Play();
+        else _player.MistParticlesPerson.Play();
         _player.MyAnimator.ChangeState(PlayerAnimationState.MIST);
         _player.CanTransform = false;
         EventManager.DIEvent += ChangeDI;
@@ -39,13 +43,15 @@ public class PSMist : IState
             if (_player.BatInputHeld && Time.time - _player.LastBatBreakTime > _player.MistInfo.TimeAfterBreakToTransform)
             {
                 // turn player into bat
-                // play bat partical
+                _player.MistParticlesBat.Play();
+                _wasBat = true;
                 _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateBat);
             }
             else
             {
-                // play vamp partical
                 // turn player into vamp form
+                _player.MistParticlesPerson.Play();
+                _wasBat = false;
                 _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
             }
         }
@@ -57,6 +63,7 @@ public class PSMist : IState
         if (_player != null)
         {
             _player.CanTransform = true;
+            _player.MistParticlesTrail.Stop();
         }
     }
     public void ChangeDI(Vector2 direction)
@@ -67,6 +74,8 @@ public class PSMist : IState
     {
         if (VictimCheck())
         {
+            _player.MistParticlesPerson.Play();
+            _wasBat = false;
             _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateEating);
         }
     }
