@@ -12,22 +12,23 @@ public class PSWalk : IState
     // enter mist state on space press 
     public void Enter()
     {
-        // play walk animation
+        _player.MyAnimator.ChangeState(PlayerAnimationState.RUN);
         EventManager.DIEvent += ChangeDI;
+        EventManager.JumpEvent += _player.Jump;
         Debug.Log("State Entered: Walk");
     }
 
     public void Execute()
     {
-        if(!_player.IsGrounded()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
-        _player.RB.linearVelocityX = _player.CountInfo.WalkSpeed * _player.DirectionalInput.x; 
+        if(!_player.IsGrounded) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateFalling);
+        _player.RB.linearVelocityX = Mathf.SmoothStep(_player.RB.linearVelocity.x, _player.CountInfo.WalkSpeed * _player.DirectionalInput.x, _player.CountInfo.AxelSpeed);
         _player.IncreaseBatTime(1);
     }
 
     public void Exit()
     {
-        // end walk animation
         EventManager.DIEvent -= ChangeDI;
+        EventManager.JumpEvent -= _player.Jump;
     }
     public void ChangeDI(Vector2 direction)
     {

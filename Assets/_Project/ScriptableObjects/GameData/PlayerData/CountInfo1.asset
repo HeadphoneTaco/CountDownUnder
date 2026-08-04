@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CountInfo1
   m_EditorClassIdentifier: Assembly-CSharp::CountInfo
   WalkSpeed: 5
+  AxelSpeed: 0.1
   DefaultGravity: 2
-  FallMoveSpeed: 3
+  FallMoveSpeed: 5
+  JumpForce: 5

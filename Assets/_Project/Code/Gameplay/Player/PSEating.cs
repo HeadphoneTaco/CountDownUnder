@@ -15,6 +15,7 @@ public class PSEating : IState
     // 
     public void Enter()
     {
+        _player.MyAnimator.ChangeState(PlayerAnimationState.EATING);
         _player.CanTransform = false;
         _player.transform.position = _player.Food.transform.position;
         _player.RB.linearVelocity = Vector2.zero;

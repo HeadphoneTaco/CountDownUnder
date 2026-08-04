@@ -16,3 +16,4 @@ MonoBehaviour:
   MaxBatTime: 1
   BatTimeDrainRate: 1
   BatTimeFillRate: 2
+  FallingRefillReduce: 2

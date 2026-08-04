@@ -12,14 +12,14 @@ public class PSBat : IState
     // drain the bat meter, if it is empty: change back into mist
     public void Enter()
     {
-        // transform into a bat
+        _player.MyAnimator.ChangeState(PlayerAnimationState.BAT);
         Debug.Log("State Entered: Bat");
         _player.RB.gravityScale = 0;
     }
 
     public void Execute()
     {
-        if (_player.ReduceBatTime()) _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateMist);
+        if (_player.ReduceBatTime()) { _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateMist); }
         _player.RB.linearVelocity += _player.BatInfo.FlySpeed * Time.deltaTime * _player.DirectionalInput;
     }
 
@@ -27,7 +27,6 @@ public class PSBat : IState
     {
         if (_player != null)
         {
-            // transform out of a bat if player isnt null
             _player.RB.gravityScale = _player.CountInfo.DefaultGravity;
         }
     }

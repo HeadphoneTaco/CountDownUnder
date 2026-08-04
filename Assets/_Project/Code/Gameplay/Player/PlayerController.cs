@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public Rigidbody2D RB;
     [HideInInspector] public bool CanTransform = true;
     private float _CurrentBlood;
+    private bool _transformationReady;
 
     [Header("Player Stats")]
     private float _currentBatTime;
     [HideInInspector] public float LastBatBreakTime;
-    private float _lastTransformationTime;
+    private float _transformationCooldown;
 
     public BatInfo BatInfo;
     public CountInfo CountInfo;
@@ -26,17 +27,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _groundCheckDistance;
     [SerializeField] private string _groundLayerName;
     private int _groundLayerIndex;
+    [HideInInspector] public bool IsGrounded;
     [Header("VictimCheck")]
     [SerializeField] private string _victimLayerName;
     [HideInInspector] public int VictimLayerIndex;
     [HideInInspector] public Victim Food;
 
-    
-    
+    [Header("Player Animator")]
+    [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _bat;
+    [HideInInspector] public PlayerAnimator MyAnimator;
+
+    [Header("Player Particles")]
+    [SerializeField] public ParticleSystem MistParticlesPerson;
+    [SerializeField] public ParticleSystem MistParticlesBat;
+    [SerializeField] public ParticleSystem MistParticlesTrail;
 
     private void Awake()
     {
         MyStateMachine = new PlayerStateMachine(this);
+        MyAnimator = new PlayerAnimator(_bat, _animator);
         _groundLayerIndex = LayerMask.GetMask(_groundLayerName);
         VictimLayerIndex = LayerMask.GetMask(_victimLayerName);
         RB = GetComponent<Rigidbody2D>();
@@ -45,6 +55,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         MyStateMachine.Initialize(MyStateMachine.StateIdle);
+        MyAnimator.Initialize(PlayerAnimationState.IDLE);
         EventManager.TransformationChanged += ChangeBatInput;
         _currentBatTime = BatInfo.MaxBatTime;
         LastBatBreakTime = Time.time;
@@ -61,10 +72,13 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        if (RB.linearVelocityX != 0) transform.localScale = new Vector3(Mathf.Sign(RB.linearVelocityX), 1, 1);
+        IsGrounded = GroundedCheck();
+        if (!_transformationReady) ReduceTransformationCooldown();
         MyStateMachine.FixedUpdate();
     }
 
-    public bool IsGrounded()
+    private bool GroundedCheck()
     {
         return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y) + _groundCheckOffset * Vector2.down, Vector2.down, _groundCheckDistance, _groundLayerIndex);
     }
@@ -72,14 +86,30 @@ public class PlayerController : MonoBehaviour
     {
         DirectionalInput = directionalInput;
     }
+    private void ReduceTransformationCooldown()
+    {
+        if (IsGrounded) _transformationCooldown -= Time.fixedDeltaTime;
+        else _transformationCooldown -= Time.fixedDeltaTime / MistInfo.TimeBetweenFallReduce;
+        if (_transformationCooldown < 0) _transformationReady = true;
+    }
     public void ChangeBatInput(bool batInputHeld)
     {
         BatInputHeld = batInputHeld;
-        if (CanTransform && Time.time - _lastTransformationTime > MistInfo.TimeBetweenMist && Time.time - LastBatBreakTime > MistInfo.TimeAfterBreakToTransform)
+        if ((CanTransform && _transformationReady && Time.time - LastBatBreakTime > MistInfo.TimeAfterBreakToTransform) || RB.gravityScale == 0)
         {
+            _transformationCooldown = MistInfo.TimeBetweenMist;
+            _transformationReady = false;
             MyStateMachine.ChangeState(MyStateMachine.StateMist);
         }
     }
+    public void Jump()
+    {
+        if (IsGrounded)
+        {
+            RB.AddForce(Vector2.up * CountInfo.JumpForce, ForceMode2D.Impulse);
+        }
+    }
+    
     public bool ReduceBatTime()
     {
         _currentBatTime = Mathf.Clamp(_currentBatTime - BatInfo.BatTimeDrainRate * Time.deltaTime, 0, BatInfo.MaxBatTime);
