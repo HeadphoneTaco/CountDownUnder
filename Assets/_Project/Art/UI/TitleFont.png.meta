@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: c4efa86a755aa6c4e9eb101fa6b96f95
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3863593859728841697
+    second: TitleFont_0
+  - first:
+      213: -2483285697581930132
+    second: TitleFont_1
+  - first:
+      213: -6654234740717220200
+    second: TitleFont_2
+  - first:
+      213: 1645643317308544593
+    second: TitleFont_3
+  - first:
+      213: -7396722712644579807
+    second: TitleFont_4
+  - first:
+      213: -1288428095115230753
+    second: TitleFont_5
+  - first:
+      213: -2655520093175284573
+    second: TitleFont_6
+  - first:
+      213: -4611712446210890719
+    second: TitleFont_7
+  - first:
+      213: -7129787110242003346
+    second: TitleFont_8
+  - first:
+      213: -8813569875128894042
+    second: TitleFont_9
+  - first:
+      213: 6637054331635928148
+    second: TitleFont_10
+  - first:
+      213: -3511442584110249334
+    second: TitleFont_11
+  - first:
+      213: -3776701510140804439
+    second: TitleFont_12
+  - first:
+      213: 8513379444639509432
+    second: TitleFont_13
+  - first:
+      213: -7793728239685112934
+    second: TitleFont_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TitleFont_0
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 650
+        width: 88
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1eb948d252e3e9530800000000000000
+      internalID: 3863593859728841697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_1
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 646
+        width: 89
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6922d7a0d8998dd0800000000000000
+      internalID: -2483285697581930132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_2
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 639
+        width: 88
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89e8c7b42c867a3a0800000000000000
+      internalID: -6654234740717220200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_3
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 645
+        width: 89
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156db2bc0ef76d610800000000000000
+      internalID: 1645643317308544593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_4
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 628
+        width: 82
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12e81c2e1ef895990800000000000000
+      internalID: -7396722712644579807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_5
+      rect:
+        serializedVersion: 2
+        x: 1485
+        y: 769
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd1060059759e1ee0800000000000000
+      internalID: -1288428095115230753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_6
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 487
+        width: 55
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3acff587b82b52bd0800000000000000
+      internalID: -2655520093175284573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_7
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 482
+        width: 57
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1242a5dc6f7efffb0800000000000000
+      internalID: -4611712446210890719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_8
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 477
+        width: 79
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e66ddd10668ed0d90800000000000000
+      internalID: -7129787110242003346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_9
+      rect:
+        serializedVersion: 2
+        x: 1020
+        y: 484
+        width: 59
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6adbbd515e8efa580800000000000000
+      internalID: -8813569875128894042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_10
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 291
+        width: 90
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45c802000cd8b1c50800000000000000
+      internalID: 6637054331635928148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_11
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 298
+        width: 90
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8acdecf299d44fc0800000000000000
+      internalID: -3511442584110249334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_12
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 301
+        width: 78
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a240618cf5769bc0800000000000000
+      internalID: -3776701510140804439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_13
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 297
+        width: 72
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bba9d3cf79952670800000000000000
+      internalID: 8513379444639509432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TitleFont_14
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 282
+        width: 94
+        height: 182
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b63ad757d17d390800000000000000
+      internalID: -7793728239685112934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TitleFont_0: 3863593859728841697
+      TitleFont_1: -2483285697581930132
+      TitleFont_10: 6637054331635928148
+      TitleFont_11: -3511442584110249334
+      TitleFont_12: -3776701510140804439
+      TitleFont_13: 8513379444639509432
+      TitleFont_14: -7793728239685112934
+      TitleFont_2: -6654234740717220200
+      TitleFont_3: 1645643317308544593
+      TitleFont_4: -7396722712644579807
+      TitleFont_5: -1288428095115230753
+      TitleFont_6: -2655520093175284573
+      TitleFont_7: -4611712446210890719
+      TitleFont_8: -7129787110242003346
+      TitleFont_9: -8813569875128894042
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
