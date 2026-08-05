@@ -14,14 +14,15 @@ public class Victim : MonoBehaviour
 
     private float _currentBloodPoints;
     private bool _isDead = false;
-    private Collider _collider;
+    private Collider2D _collider;
+    [SerializeField] private Animator _anim;
     /// <summary>
     /// put the victim's collider slightly in the positive z direction of the line the player runs along
     /// make sure they are on the "Victims" layer, the player detects them by layer and not by tag
     /// </summary>
     void Start()
     {
-        _collider = GetComponent<Collider>();
+        _collider = GetComponent<Collider2D>();
         //if (_animator == null) _animator = GetComponentInChildren<Animator>();
         _currentBloodPoints = _startBloodPoints;
 
@@ -65,7 +66,7 @@ public class Victim : MonoBehaviour
 
         //if (_animator != null && _deathController != null)
         //    _animator.runtimeAnimatorController = _deathController;
-
+        _anim.SetTrigger("Death");
         Destroy(gameObject, Mathf.Max(0f, _despawnDelay));
     }
 }
