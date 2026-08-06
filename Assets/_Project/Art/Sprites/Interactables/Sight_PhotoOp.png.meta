@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b0bf6b39df896e749a4355c191f63bd6
+guid: 10f9cc3a58b28774fba27bf45943f38f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -58010850814451667
-    second: Lighting_LampPost_0
+      213: -1227438699970714538
+    second: Untitled - July 29, 2026 at 19.01.39 (9)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lighting_LampPost_0
+      name: Untitled - July 29, 2026 at 19.01.39 (9)_0
       rect:
         serializedVersion: 2
-        x: 103
-        y: 1
-        width: 304
-        height: 468
+        x: 160
+        y: 0
+        width: 192
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2026144077e13ff0800000000000000
-      internalID: -58010850814451667
+      spriteID: 654ada0710347fee0800000000000000
+      internalID: -1227438699970714538
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lighting_LampPost_0: -58010850814451667
+      Untitled - July 29, 2026 at 19.01.39 (9)_0: -1227438699970714538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
