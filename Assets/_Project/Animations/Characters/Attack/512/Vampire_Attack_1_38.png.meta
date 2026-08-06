@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vampire_Attack_1_38_0
+      name: Running_1_0
       rect:
         serializedVersion: 2
-        x: 190
-        y: 61
-        width: 216
-        height: 271
+        x: 138
+        y: 13
+        width: 256
+        height: 468
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1536016186e1a2fe0800000000000000
-      internalID: -1213123717227322543
+      spriteID: f01527be7b6a8d110800000000000000
+      internalID: 1285961002473640207
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Vampire_Attack_1_38_0: -1213123717227322543
+      Running_1_0: 1285961002473640207
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
