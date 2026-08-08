@@ -158,4 +158,14 @@ public class PlayerController : MonoBehaviour
     {
 
     }
+
+    public void TakeDamage(float Damage, Vector2 KnockbackForce, float StunTime)
+    {
+        // take damage
+        ChangeBloodPoints(-Damage);
+        // apply knockback
+        RB.AddForce(KnockbackForce, ForceMode2D.Impulse);
+        // apply stun
+        // (stun logic would go here)
+    }
 }
