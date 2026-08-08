@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772f33def435f3d4aadb53055ceffd32, type: 3}
   m_Name: ObstacleInfo1
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.ObstacleInfo
-  Damage: 0
-  KnockbackForce: 0
-  StunTime: 0
+  Damage: 5
+  KnockbackForce: 20
+  StunTime: 0.5
   PlayerLayerName: Player
