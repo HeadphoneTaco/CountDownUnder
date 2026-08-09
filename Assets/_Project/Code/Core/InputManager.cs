@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     private PlayerInputs _inputs;
     private Vector2 _currentDI;
     private Vector2 _lastReadDI;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _inputs = new PlayerInputs();
     }
     private void OnEnable()

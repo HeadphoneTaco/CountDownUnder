@@ -1,0 +1,43 @@
+This is a document regarding important information for level design on this project
+Please by all means add more details or suggestions as we finish the last things of the project
+
+Things that are necessary in the scene:
+- Player prefab with attached scriptable objects, if you need to make more prefab variants instead of changing the original prefab
+	if more than one person changes the origional prefab it will cause a merge conflict so we can change it once we are set up with the final level
+- The Input manager is a singleton using seans script so it may not be necesssary in the final version of your scene
+	however for the purpose of testing a scene it must have an instance in your scene or your player will not move
+- A camera with a few options:
+	cinemachine brain,
+	ask Yuki to make a camera moving script that does one specific thing in a less annoying way; she can do that
+	just attach the cam to the player, it does not need to be the most complicated thing during the testing phase
+- the Ui prefabs made by mina, they are not currently opporational but the prefabs will be edited later to solve that
+- when the game manager exists then that too, it will be a persistent singleton but for you testing your scene it will be needed
+
+
+To build the level:
+- use the prefabs Mina made for the main structure of the level, they are in the prefabs folder
+	If mina would like to explain her intention with them then she can do that here if she likes:
+
+- use the croc and roo prefabs as a base for the enemies, they are in the prefabs folder
+	if you would like to change a behaviour on the enemies you can make new scriptable objects and attach them to the prefab
+	Yuki intended for:
+	the lunge bite stratagy for the croc and the simple bite stratagy for the roo
+	the idle stratagy for the croc and the wander idle stratagy for the roo // if you want the croc to wander or the roo to sit in one spot then attach whatever you like
+	for the idle stratagies, if you dont want the enemies to be on the same cycle, make a new scriptable object with a different "decision time offset"
+	the single ray search stratagy was intended for the croc so it would only see the player if they were directly infront of it
+	the box cast search stratagy was intended for the roo to make it a bit less blind to a player at a slightly different elevation 
+	please note, the enemies have no way to deal with verticality but if you have an idea please tell Yuki
+- for any people to eat use the victim prefab, you can then alter their death delay or blood points if you like
+	please note, adding blood points will make the player suck that persons blood for longer but also recover the counts health more
+	so dont keep the numbers too high but after a tough area give the victim more blood
+
+
+the level win condition and important places do not currently exist 
+there are prefabs for both that you can put into the places you want those things to happen
+once those scripts do exist the prefabs can be edited to make the box invisible and the trigger cause their appropriate effect
+please do not edit the size of the parent object and only edit the position of that
+please do not move the position of the detection square far away from the parent object but do edit its size to pick how big you want the detection to be
+
+Please ask questions on thing you do not understand
+if there are additional things you would like to add please put them below the merge conflicts should not be too bad right?:
+

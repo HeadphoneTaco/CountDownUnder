@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2700d53e95c83cb49adaefe173c29d3b, type: 3}
   m_Name: LungeBiteStrategy
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.Stratagies.LungeBiteStrategy
-  BiteOffset: {x: 1, y: 0}
-  BiteRadius: 1
+  BiteOffset: {x: 0.5, y: 0}
+  BiteRadius: 0.5
   BiteDuration: 0.5
-  BiteDistance: 1
-  BiteCooldown: 0.5
-  LungeSpeed: {x: 2, y: 2}
+  BiteDistance: 3
+  BiteCooldown: 2
+  LungeSpeed: {x: 40, y: 25}

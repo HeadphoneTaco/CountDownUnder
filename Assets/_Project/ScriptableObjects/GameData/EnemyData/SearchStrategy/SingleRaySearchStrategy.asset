@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SingleRaySearchStrategy
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.Stratagies.SingleRaySearchStrategy
   CastDistance: 7
-  _rayOffset: {x: 1, y: 1}
+  _rayOffset: {x: 1, y: 0}

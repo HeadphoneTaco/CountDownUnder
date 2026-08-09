@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ObstacleInfo1
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.ObstacleInfo
   Damage: 5
-  KnockbackForce: 20
+  KnockbackForce: 5
   StunTime: 0.5
   PlayerLayerName: Player

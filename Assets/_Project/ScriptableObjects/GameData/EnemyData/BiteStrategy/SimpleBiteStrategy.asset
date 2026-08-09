@@ -15,5 +15,5 @@ MonoBehaviour:
   BiteOffset: {x: 1, y: 0}
   BiteRadius: 1
   BiteDuration: 3
-  BiteDistance: 3
-  BiteCooldown: 0.5
+  BiteDistance: 2
+  BiteCooldown: 2
