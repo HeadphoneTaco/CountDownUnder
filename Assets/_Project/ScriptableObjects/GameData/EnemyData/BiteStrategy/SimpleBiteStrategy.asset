@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.Stratagies.SimpleBiteStrategy
   BiteOffset: {x: 1, y: 0}
   BiteRadius: 1
-  BiteDuration: 0.5
-  BiteDistance: 1
+  BiteDuration: 3
+  BiteDistance: 3
   BiteCooldown: 0.5

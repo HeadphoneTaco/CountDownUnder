@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Code.Gameplay.Obstacles.Stratagies
+namespace Assets._Project.Code.Gameplay.Obstacles.Strategies
 {
     [CreateAssetMenu(fileName = "SingleRaySearchStrategy", menuName = "Scriptable Objects/SingleRaySearchStrategy")]
     public class SingleRaySearchStrategy : SearchInfo

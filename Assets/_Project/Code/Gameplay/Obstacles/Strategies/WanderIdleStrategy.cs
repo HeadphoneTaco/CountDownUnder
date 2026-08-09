@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Code.Gameplay.Obstacles.Stratagies
+namespace Assets._Project.Code.Gameplay.Obstacles.Strategies
 {
     [CreateAssetMenu(fileName = "WanderIdleStrategy", menuName = "Scriptable Objects/WanderIdleStrategy")]
     public class WanderStrategy : IdleInfo
@@ -28,7 +28,7 @@ namespace Assets._Project.Code.Gameplay.Obstacles.Stratagies
             if (Time.time % (4 * DecisionTime) + DecisionTimeOffset < DecisionTime)
             {
                 RB.linearVelocityX = 0;
-                return (true, true);
+                return (false, true);
             }
             else if (Time.time % (4 * DecisionTime) + DecisionTimeOffset < 2 * DecisionTime)
             {
@@ -38,11 +38,11 @@ namespace Assets._Project.Code.Gameplay.Obstacles.Stratagies
             else if (Time.time % (4 * DecisionTime) + DecisionTimeOffset < 3 * DecisionTime)
             {
                 RB.linearVelocityX = 0;
-                return (false, true);
+                return (true, true);
             }
             else
             {
-                RB.linearVelocityX = MoveSpeed;
+                RB.linearVelocityX = - MoveSpeed;
                 return (false, true);
             }
         }

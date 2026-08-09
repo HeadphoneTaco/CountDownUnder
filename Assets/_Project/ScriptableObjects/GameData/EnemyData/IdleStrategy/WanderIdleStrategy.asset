@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8516a933785f943a359be563f5dd7c, type: 3}
   m_Name: WanderIdleStrategy
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.Stratagies.WanderStrategy
-  MoveSpeed: 5
+  MoveSpeed: 2
   DecisionTime: 3
   DecisionTimeOffset: 0

@@ -20,8 +20,8 @@ namespace Assets._Project.Code.Gameplay.Obstacles
 
         private Rigidbody2D RB;
         private Vector2 _startPosition;
-        private bool _facingRight;
-        private float _timeOfLastBiteStart;
+        private bool _facingRight = true;
+        private float _timeOfLastBiteStart = 0f;
         private bool _reachedStartPosition = true;
 
 
@@ -39,9 +39,12 @@ namespace Assets._Project.Code.Gameplay.Obstacles
             // if the player is not known then search and idle
             if (_playerController != null)
             {
-                if (_timeOfLastBiteStart < _biteInfo.BiteDuration + Time.time)
+                if (Time.time - _timeOfLastBiteStart < _biteInfo.BiteDuration)
                 {
-                    _biteInfo.BitePlayer(transform, _playerLayerIndex, _playerController, _facingRight, RB, Time.time - _timeOfLastBiteStart);
+                    if (_biteInfo.BitePlayer(transform, _playerLayerIndex, _playerController, _facingRight, RB, (float)(Time.time - _timeOfLastBiteStart)))
+                    {
+                        HurtPlayer();
+                    }   
                 }
                 else if (_biteInfo.IsPlayerInBiteRange(transform.position, _playerController.transform.position) && Time.time - _timeOfLastBiteStart + _biteInfo.BiteDuration > _biteInfo.BiteCooldown)
                 {

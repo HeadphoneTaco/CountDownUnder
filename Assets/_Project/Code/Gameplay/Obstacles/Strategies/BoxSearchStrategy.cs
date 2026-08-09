@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Code.Gameplay.Obstacles.Stratagies
+namespace Assets._Project.Code.Gameplay.Obstacles.Strategies
 {
     [CreateAssetMenu(fileName = "BoxSearchStrategy", menuName = "Scriptable Objects/BoxSearchStrategy")]
     public class BoxSearchStrategy : SearchInfo

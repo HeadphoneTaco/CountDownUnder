@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project.Code.Gameplay.Obstacles.Stratagies
+namespace Assets._Project.Code.Gameplay.Obstacles.Strategies
 {
     [CreateAssetMenu(fileName = "ChaseStrategy", menuName = "Scriptable Objects/ChaseStrategy")]
     public class ChaseStrategy : ChaseInfo

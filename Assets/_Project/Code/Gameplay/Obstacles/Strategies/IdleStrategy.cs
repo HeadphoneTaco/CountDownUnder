@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Assets._Project.Code.Gameplay.Obstacles.Stratagies
+namespace Assets._Project.Code.Gameplay.Obstacles.Strategies
 {
     [CreateAssetMenu(fileName = "IdleStrategy", menuName = "Scriptable Objects/IdleStrategy")]
     public class IdleStrategy : IdleInfo

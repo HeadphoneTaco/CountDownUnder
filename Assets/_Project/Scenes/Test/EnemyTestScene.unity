@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.MovingObstacle
   _obstacleInfo: {fileID: 11400000, guid: 2d419a22c9663e04793db56a9569a30a, type: 2}
-  _biteInfo: {fileID: 11400000, guid: a22e0a3f62a4cbe4da0ce08547fe475b, type: 2}
+  _biteInfo: {fileID: 11400000, guid: 9c81f1ae4a364224a8bdb8f0ad653e3a, type: 2}
   _searchInfo: {fileID: 11400000, guid: b8c8e17b93faf9d429b55e3d92a5c359, type: 2}
   _idleInfo: {fileID: 11400000, guid: d28e8d71b0fa62b458196cfca9084426, type: 2}
   _chaseInfo: {fileID: 11400000, guid: 3ef29fa7838dc214599bc00849d31df3, type: 2}

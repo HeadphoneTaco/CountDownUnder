@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ea258a509cc164d86179550cf74015, type: 3}
   m_Name: ChaseStrategy
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.Stratagies.ChaseStrategy
-  ChaseSpeed: 7
+  ChaseSpeed: 3
   ForgetDistance: 5
