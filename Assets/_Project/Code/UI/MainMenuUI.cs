@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Scene routing for the menu screens. Put one of these on the Canvas of any menu
@@ -19,12 +20,50 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private string _settingsSceneName = "SettingsMenu";
     [SerializeField] private string _mainMenuSceneName = "MainMenu";
 
+    [Header("Buttons")]
+    [Tooltip("Drag the button objects here and leave their OnClick lists empty. " +
+             "A button prefab cannot store a reference to something outside itself, so wiring OnClick " +
+             "in Prefab Mode keeps the method name but silently drops the target.")]
+    [SerializeField] private Button _playButton;
+
+    [Tooltip("End screens. Does the same thing as Play, named for what it means there.")]
+    [SerializeField] private Button _replayButton;
+
+    [SerializeField] private Button _settingsButton;
+    [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Button _quitButton;
+
     private void Awake()
     {
         // If the player quit to menu out of a paused game, timeScale is still zero and
         // every animation on this screen would sit frozen. Menus always run at full speed.
         Time.timeScale = 1f;
         AudioListener.pause = false;
+
+        Hook(_playButton, PlayGame);
+        Hook(_replayButton, PlayGame);
+        Hook(_settingsButton, OpenSettings);
+        Hook(_mainMenuButton, BackToMainMenu);
+        Hook(_quitButton, QuitGame);
+    }
+
+    private void OnDestroy()
+    {
+        Unhook(_playButton, PlayGame);
+        Unhook(_replayButton, PlayGame);
+        Unhook(_settingsButton, OpenSettings);
+        Unhook(_mainMenuButton, BackToMainMenu);
+        Unhook(_quitButton, QuitGame);
+    }
+
+    private static void Hook(Button button, UnityEngine.Events.UnityAction action)
+    {
+        if (button != null) button.onClick.AddListener(action);
+    }
+
+    private static void Unhook(Button button, UnityEngine.Events.UnityAction action)
+    {
+        if (button != null) button.onClick.RemoveListener(action);
     }
 
     // Button hooks.

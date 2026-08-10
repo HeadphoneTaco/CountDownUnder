@@ -10,6 +10,9 @@ public static class EventManager
     public static Action PlayerHurt;
     public static Action PlayerDied;
 
+    /// <summary>The run was completed successfully. Raised by the win trigger.</summary>
+    public static Action PlayerWon;
+
     /// <summary>The player has latched onto a victim and started draining.</summary>
     public static Action PlayerEatStarted;
 

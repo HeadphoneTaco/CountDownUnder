@@ -89,12 +89,12 @@ public class PlayerController : MonoBehaviour
     {
         // FixedUpdate already stops on its own at timeScale 0, but Update does not,
         // so the state machine would keep ticking behind the pause menu.
-        if (PauseManager.IsPaused) return;
+        if (IsDead || PauseManager.IsPaused) return;
         MyStateMachine.Execute();
     }
     public void FixedUpdate()
     {
-        if (PauseManager.IsPaused) return;
+        if (IsDead || PauseManager.IsPaused) return;
         if (RB.linearVelocityX != 0) transform.localScale = new Vector3(Mathf.Sign(RB.linearVelocityX), 1, 1);
         IsGrounded = GroundedCheck();
         if (!_transformationReady) ReduceTransformationCooldown();
@@ -181,14 +181,28 @@ public class PlayerController : MonoBehaviour
     }
     private void Die()
     {
-        // Pausing during the death sequence would let the player sit in the menu forever
-        // instead of watching the run end.
-        if (PauseManager.Instance != null) PauseManager.Instance.SetPauseAllowed(false);
+        // ChangeBloodPoints can be reached more than once in the frame a run ends, and a
+        // second death would restart the whole end sequence.
+        if (IsDead) return;
+        IsDead = true;
+
+        // Stop dead rather than sliding onward under the last input.
+        DirectionalInput = Vector2.zero;
+        if (RB != null) RB.linearVelocity = Vector2.zero;
+
+        // InstanceIfExists throughout: the creating getter would rebuild a manager during
+        // a scene transition and leak it into the closing scene.
+        if (PauseManager.InstanceIfExists != null) PauseManager.InstanceIfExists.SetPauseAllowed(false);
+        if (InputManager.InstanceIfExists != null) InputManager.InstanceIfExists.SetGameplayInputEnabled(false);
+
         EventManager.PlayerDied?.Invoke();
     }
 
     /// <summary>True while the player cannot be hit again. Read by anything that wants to flicker the sprite.</summary>
     public bool IsInvincible => Time.time < _invincibleUntil;
+
+    /// <summary>Set once blood hits zero. The state machine stops ticking from that point.</summary>
+    public bool IsDead { get; private set; }
 
     public void TakeDamage(float Damage, Vector2 KnockbackForce, float StunTime)
     {

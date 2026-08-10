@@ -68,6 +68,13 @@ public class PSEating : IState
     private void DrainBlood()
     {
         (_targetDead, _bloodSucked) =_player.Food.DrainBlood(_player.HitInfo.BloodDrainRate * Time.deltaTime);
+
+        // The victim was losing blood but none of it was reaching the player. The amount
+        // came back in _bloodSucked and was simply never spent.
+        // Guarded on > 0 because a drained victim returns zero, and ChangeBloodPoints
+        // logs a warning for a change of nothing, which would spam every frame.
+        if (_bloodSucked > 0f) _player.ChangeBloodPoints(_bloodSucked);
+
         if (_targetDead)
         {
             _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateIdle);
