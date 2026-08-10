@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CountInfo-Kyle
   m_EditorClassIdentifier: Assembly-CSharp::CountInfo
   WalkSpeed: 5
-  AxelSpeed: 0.1
-  DefaultGravity: 2
+  AxelSpeed: 0.3
+  DefaultGravity: 1.5
   FallMoveSpeed: 5
   JumpForce: 3

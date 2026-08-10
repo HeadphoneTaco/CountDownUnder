@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _CurrentBlood = HitInfo.MaxBloodPoints;
+        RB.gravityScale = CountInfo.DefaultGravity;
     }
     private void OnEnable()
     {
