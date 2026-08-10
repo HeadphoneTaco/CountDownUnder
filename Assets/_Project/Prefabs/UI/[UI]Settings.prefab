@@ -434,6 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223014632954898349}
+  - component: {fileID: 7897981609663760545}
   m_Layer: 0
   m_Name: '[UI]Settings'
   m_TagString: Untagged
@@ -457,6 +458,25 @@ Transform:
   - {fileID: 8968613363476327098}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7897981609663760545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094299047454760741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d9d4b15841a6040ae7592d880265eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsPanelUI
+  _bgmSlider: {fileID: 8407318545499787737}
+  _sfxSlider: {fileID: 4961972597676439445}
+  _mixer: {fileID: 0}
+  _bgmExposedParam: BGMVolume
+  _sfxExposedParam: SFXVolume
+  _defaultBgm: 0.7
+  _defaultSfx: 0.8
 --- !u!1 &3128765601080335875
 GameObject:
   m_ObjectHideFlags: 0

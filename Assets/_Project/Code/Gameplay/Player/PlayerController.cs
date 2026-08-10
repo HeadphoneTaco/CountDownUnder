@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public bool CanTransform = true;
     private float _CurrentBlood;
     private bool _transformationReady;
+    private float _invincibleUntil;
 
     [Header("Player Stats")]
     private float _currentBatTime;
@@ -50,6 +51,16 @@ public class PlayerController : MonoBehaviour
         _groundLayerIndex = LayerMask.GetMask(_groundLayerName);
         VictimLayerIndex = LayerMask.GetMask(_victimLayerName);
         RB = GetComponent<Rigidbody2D>();
+
+        // Max blood is the divisor for every normalised health value the HUD reads.
+        // At zero that division is 0/0, so the bar gets NaN and the player starts empty.
+        if (HitInfo.MaxBloodPoints <= 0f)
+        {
+            Debug.LogError($"[PlayerController] HitInfo '{HitInfo.name}' has MaxBloodPoints of {HitInfo.MaxBloodPoints}. " +
+                           "Falling back to 100 so the game is playable. Set a real value on the asset.", HitInfo);
+            HitInfo.MaxBloodPoints = 100f;
+        }
+
         _CurrentBlood = HitInfo.MaxBloodPoints;
     }
     private void OnEnable()
@@ -66,12 +77,24 @@ public class PlayerController : MonoBehaviour
         EventManager.TransformationChanged -= ChangeBatInput;
     }
 
+    private void Start()
+    {
+        // PlayerHealthChange only fires on a change, so a HUD that subscribes in OnEnable
+        // would sit on whatever fill the prefab was saved with until the first hit lands.
+        // Start runs after every OnEnable, so everyone is listening by now.
+        EventManager.PlayerHealthChange?.Invoke(_CurrentBlood / HitInfo.MaxBloodPoints);
+    }
+
     public void Update()
     {
+        // FixedUpdate already stops on its own at timeScale 0, but Update does not,
+        // so the state machine would keep ticking behind the pause menu.
+        if (PauseManager.IsPaused) return;
         MyStateMachine.Execute();
     }
     public void FixedUpdate()
     {
+        if (PauseManager.IsPaused) return;
         if (RB.linearVelocityX != 0) transform.localScale = new Vector3(Mathf.Sign(RB.linearVelocityX), 1, 1);
         IsGrounded = GroundedCheck();
         if (!_transformationReady) ReduceTransformationCooldown();
@@ -156,11 +179,24 @@ public class PlayerController : MonoBehaviour
     }
     private void Die()
     {
-
+        // Pausing during the death sequence would let the player sit in the menu forever
+        // instead of watching the run end.
+        if (PauseManager.Instance != null) PauseManager.Instance.SetPauseAllowed(false);
+        EventManager.PlayerDied?.Invoke();
     }
+
+    /// <summary>True while the player cannot be hit again. Read by anything that wants to flicker the sprite.</summary>
+    public bool IsInvincible => Time.time < _invincibleUntil;
 
     public void TakeDamage(float Damage, Vector2 KnockbackForce, float StunTime)
     {
+        // Without this, an obstacle whose collider overlaps the player applies damage
+        // every physics tick. That drains blood in one gulp and makes the hit flash
+        // strobe once per frame, which reads as a rendering bug rather than as damage.
+        if (IsInvincible) return;
+
+        _invincibleUntil = Time.time + HitInfo.InvincibilityTime;
+
         // take damage
         ChangeBloodPoints(-Damage);
         // apply knockback

@@ -188,6 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4367157372105791148}
+  - component: {fileID: 8788933142795814688}
   m_Layer: 0
   m_Name: '[UI]ControlsA'
   m_TagString: Untagged
@@ -211,6 +212,20 @@ Transform:
   - {fileID: 247429344893354010}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8788933142795814688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698160764697284912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcea132a5989b6741951a025a11c3f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControlsPanelUI
+  _diagram: {fileID: 7698160764697284912}
+  _hiddenOnStart: 1
 --- !u!1001 &4712680340821263938
 PrefabInstance:
   m_ObjectHideFlags: 0
