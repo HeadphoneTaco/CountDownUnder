@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         VictimLayerIndex = LayerMask.GetMask(_victimLayerName);
         RB = GetComponent<Rigidbody2D>();
         _CurrentBlood = HitInfo.MaxBloodPoints;
+        RB.gravityScale = CountInfo.DefaultGravity;
     }
     private void OnEnable()
     {
