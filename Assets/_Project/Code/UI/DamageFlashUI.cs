@@ -31,6 +31,10 @@ public class DamageFlashUI : MonoBehaviour
 
     [SerializeField] private Color _flashColour = new Color(0.85f, 0.02f, 0.06f, 1f);
 
+    [Tooltip("On: the sprite is tinted with Flash Colour, so a white alpha mask can be recoloured here. " +
+             "Off: the sprite keeps its own painted colours and only its opacity is animated.")]
+    [SerializeField] private bool _tintSprite = true;
+
     [Header("Low Blood Throb")]
     [Tooltip("Keep a faint pulse on screen while blood is low, so danger is legible even between hits.")]
     [SerializeField] private bool _throbWhenLow = true;
@@ -121,9 +125,12 @@ public class DamageFlashUI : MonoBehaviour
 
     private void SetAlpha(float alpha)
     {
-        Color c = _flashColour;
+        Color c = _tintSprite ? _flashColour : Color.white;
         c.a = alpha;
         _flashImage.color = c;
+
+        // Disabling rather than leaving a transparent full screen image on saves the
+        // renderer a pointless screen sized overdraw on every frame the player is fine.
         _flashImage.enabled = alpha > 0.001f;
     }
 }

@@ -16,3 +16,4 @@ MonoBehaviour:
   InvincibilityTime: 1
   KnockBackTime: 0.25
   BloodDrainRate: 5
+  MaxBloodPoints: 110
