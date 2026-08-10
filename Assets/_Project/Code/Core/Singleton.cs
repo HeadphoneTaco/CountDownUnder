@@ -5,11 +5,27 @@ using UnityEngine;
 public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
+    private static bool _isQuitting;
+
+    /// <summary>
+    /// The instance if one already exists, otherwise null. Never creates anything.
+    ///
+    /// Use this from OnDisable, OnDestroy, and OnApplicationQuit. Touching Instance
+    /// during teardown resurrects a manager that was just destroyed, and Unity reports
+    /// that as "Some objects were not cleaned up when closing the scene".
+    /// </summary>
+    public static T InstanceIfExists => _instance;
+
+    public static bool HasInstance => _instance != null;
 
     public static T Instance
     {
         get
         {
+            // Play mode is ending and everything is being torn down. Building a fresh
+            // manager now would leak a GameObject into the closing scene.
+            if (_isQuitting) return null;
+
             if (_instance == null)
             {
                 // Find one in the scene, or create one if none exists.
@@ -56,5 +72,17 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void OnApplicationQuit()
+    {
+        _isQuitting = true;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        // Clear the slot so the next scene, or the next play session with domain reload
+        // disabled, does not hold a reference to a destroyed object.
+        if (_instance == this) _instance = null;
     }
 }

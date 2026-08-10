@@ -27,6 +27,13 @@ namespace Core
         [Tooltip("Optional. Character lines play here so a new line cuts the previous one instead of overlapping.")]
         public AudioSource voiceAudioSource;
 
+        [Tooltip("Optional. Sustained effects that run for as long as an action lasts, such as feeding.")]
+        public AudioSource loopAudioSource;
+
+        [Tooltip("Trim for character lines relative to effects. The recordings sit quieter than the " +
+                 "sourced SFX, so this lifts them without touching the SFX slider.")]
+        [Range(0f, 3f)] public float voiceGain = 1.4f;
+
         public AudioClip[] bgMusic;
         public AudioClip[] ambientAudio;
 
@@ -82,6 +89,7 @@ namespace Core
             bgAudioSource = bgAudioSource != null ? bgAudioSource : CreateSource("Music", loop: false);
             ambientAudioSource = ambientAudioSource != null ? ambientAudioSource : CreateSource("Ambient");
             voiceAudioSource = voiceAudioSource != null ? voiceAudioSource : CreateSource("Voice");
+            loopAudioSource = loopAudioSource != null ? loopAudioSource : CreateSource("Loop", loop: true);
         }
 
         private AudioSource CreateSource(string sourceName, bool loop = false)
@@ -135,8 +143,28 @@ namespace Core
 
             source.Stop();
             source.clip = clip;
-            source.volume = _sfxVolume;
+            source.volume = Mathf.Clamp01(_sfxVolume * voiceGain);
             source.Play();
+        }
+
+        /// <summary>
+        /// Starts a sustained effect that runs until StopLoop. Re-calling with the clip
+        /// already playing is ignored, so this is safe to call every frame from a state.
+        /// </summary>
+        public void PlayLoop(AudioClip clip)
+        {
+            if (clip == null || loopAudioSource == null) return;
+            if (loopAudioSource.clip == clip && loopAudioSource.isPlaying) return;
+
+            loopAudioSource.clip = clip;
+            loopAudioSource.loop = true;
+            loopAudioSource.volume = _sfxVolume;
+            loopAudioSource.Play();
+        }
+
+        public void StopLoop()
+        {
+            if (loopAudioSource != null) loopAudioSource.Stop();
         }
 
         public void PlayRandomVoice(AudioClip[] clips, bool interrupt = true)
@@ -172,7 +200,8 @@ namespace Core
         {
             if (bgAudioSource != null) bgAudioSource.volume = _bgmVolume;
             if (ambientAudioSource != null) ambientAudioSource.volume = _bgmVolume;
-            if (voiceAudioSource != null) voiceAudioSource.volume = _sfxVolume;
+            if (voiceAudioSource != null) voiceAudioSource.volume = Mathf.Clamp01(_sfxVolume * voiceGain);
+            if (loopAudioSource != null) loopAudioSource.volume = _sfxVolume;
 
             // sfxAudioSource is intentionally left alone. PlayOneShot takes its own
             // volume scale, so setting the source volume as well would square it.

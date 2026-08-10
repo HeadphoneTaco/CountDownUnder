@@ -159,7 +159,9 @@ public class PlayerController : MonoBehaviour
         if (ChangeBy == 0) Debug.Log("No Change in Blood");
         else if (ChangeBy < 0)
         {
-            if (_CurrentBlood + ChangeBy < 0)
+            // Must be <= rather than <. Landing exactly on zero used to take the else
+            // branch, leaving the player alive on an empty bar with Die never called.
+            if (_CurrentBlood + ChangeBy <= 0)
             {
                 _CurrentBlood = 0;
                 Die();

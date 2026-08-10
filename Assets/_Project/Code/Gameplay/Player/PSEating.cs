@@ -5,6 +5,7 @@ public class PSEating : IState
     private PlayerController _player;
     private bool _targetDead;
     private float _bloodSucked;
+    private bool _eating;
     
     public PSEating(PlayerController player)
     {
@@ -15,16 +16,22 @@ public class PSEating : IState
     // 
     public void Enter()
     {
-        _player.MyAnimator.ChangeState(PlayerAnimationState.EATING);
-        _player.CanTransform = false;
-        _player.transform.position = _player.Food.transform.position;
-        _player.RB.linearVelocity = Vector2.zero;
-        if (_player.Food == null||_player.Food.GetBit())
+        // The null check has to come first. Reading Food.transform.position above it
+        // threw before the guard could ever run.
+        if (_player.Food == null || _player.Food.GetBit())
         {
             Debug.Log("food is missing or dead");
             _player.MyStateMachine.ChangeState(_player.MyStateMachine.StateIdle);
             return;
         }
+
+        _player.MyAnimator.ChangeState(PlayerAnimationState.EATING);
+        _player.CanTransform = false;
+        _player.transform.position = _player.Food.transform.position;
+        _player.RB.linearVelocity = Vector2.zero;
+
+        _eating = true;
+        EventManager.PlayerEatStarted?.Invoke();
     }
 
     public void Execute()
@@ -47,6 +54,12 @@ public class PSEating : IState
             _player.CanTransform = true;
             _player.Food = null;
         }
+
+        // Guarded, because Enter can bail out before eating ever begins. Firing the
+        // end event without a matching start would leave the eating loop running.
+        if (!_eating) return;
+        _eating = false;
+        EventManager.PlayerEatEnded?.Invoke();
     }
     public void FixedUpdate()
     {

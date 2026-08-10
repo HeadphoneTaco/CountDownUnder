@@ -479,17 +479,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAudioCues
   _hurtImpact:
-  - {fileID: 8300000, guid: d652eccf935d3354d9991c77ee06d2e0, type: 3}
+  - {fileID: 8300000, guid: 260e8e7ec8e43284aa354f646a9346aa, type: 3}
+  - {fileID: 8300000, guid: bbacd0ff2dc950940b18fe18f481fc9b, type: 3}
   _hurtVoice:
   - {fileID: 8300000, guid: 06cb4ac1cfc190245b8fa74f85a50cee, type: 3}
   - {fileID: 8300000, guid: e6a64db2748871b47b5a5894c247418d, type: 3}
   _hurtVoiceChance: 0.35
   _voiceCooldown: 2
-  _lowBloodVoice: []
+  _lowBloodVoice:
+  - {fileID: 8300000, guid: edc414249e7a3004f9bbfde02074a150, type: 3}
   _lowBloodThreshold: 0.25
-  _deathSting: []
+  _eatStart:
+  - {fileID: 8300000, guid: 083fa2c5f9cef6e41a1ba8a34d50ddb5, type: 3}
+  - {fileID: 8300000, guid: 70a4127ebca9a4d4cb1eea1b3848bbc1, type: 3}
+  - {fileID: 8300000, guid: bb4215341817c994eb54f53ef4874e79, type: 3}
+  - {fileID: 8300000, guid: d995e37e62b330541a7e6a97c28db3bc, type: 3}
+  _eatStartChance: 0.542
+  _eatLoop: {fileID: 0}
+  _victimDeath: []
+  _eatVoice: []
+  _eatVoiceChance: 0.6
+  _eatVoiceDelay: 0.5
+  _deathSting:
+  - {fileID: 8300000, guid: d652eccf935d3354d9991c77ee06d2e0, type: 3}
   _deathVoice:
-  - {fileID: 8300000, guid: ca6cded58e624ae489ba6ba8f0264822, type: 3}
+  - {fileID: 8300000, guid: f9e38cf73d8216647b6c3e6e5ab11e21, type: 3}
   _deathVoiceDelay: 0.6
 --- !u!4 &42012484664316122
 Transform:

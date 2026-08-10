@@ -44,11 +44,17 @@ public class InputManager : Singleton<InputManager>
         _inputs.Disable();
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
-        if (Instance != this) return;
-        _inputs?.Dispose();
-        _inputs = null;
+        // InstanceIfExists rather than Instance: the getter would rebuild the singleton
+        // mid teardown, which leaks a GameObject into the closing scene.
+        if (InstanceIfExists == this)
+        {
+            _inputs?.Dispose();
+            _inputs = null;
+        }
+
+        base.OnDestroy();
     }
 
     public void Update()

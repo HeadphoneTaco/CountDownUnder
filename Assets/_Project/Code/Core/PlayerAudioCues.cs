@@ -2,7 +2,7 @@ using UnityEngine;
 using Core;
 
 /// <summary>
-/// Turns player damage and death events into sound. Purely a listener, so audio can be
+/// Turns player damage, eating, and death events into sound. Purely a listener, so audio can be
 /// added, removed, or retimed without touching gameplay code.
 ///
 /// Put this in the game scene alongside the AudioManager. Leave any clip array empty and
@@ -29,6 +29,27 @@ public class PlayerAudioCues : MonoBehaviour
 
     [Range(0f, 1f)][SerializeField] private float _lowBloodThreshold = 0.25f;
 
+    [Header("Eating")]
+    [Tooltip("Played once the moment the bite lands.")]
+    [SerializeField] private AudioClip[] _eatStart;
+
+    [Tooltip("Odds of the bite effect playing. 1 is every bite, 0.5 is roughly every other one.")]
+    [Range(0f, 1f)][SerializeField] private float _eatStartChance = 0.5f;
+
+    [Tooltip("Loops for as long as draining continues. Wants a clip that tiles cleanly, such as the sucking effect.")]
+    [SerializeField] private AudioClip _eatLoop;
+
+    [Tooltip("The victim's reaction when they are drained dry.")]
+    [SerializeField] private AudioClip[] _victimDeath;
+
+    [Tooltip("Satisfied line after finishing a victim. Fires on Eat Voice Chance.")]
+    [SerializeField] private AudioClip[] _eatVoice;
+
+    [Range(0f, 1f)][SerializeField] private float _eatVoiceChance = 0.6f;
+
+    [Tooltip("Seconds after the victim dies before the line, so it does not land on top of the scream.")]
+    [SerializeField] private float _eatVoiceDelay = 0.5f;
+
     [Header("Death")]
     [SerializeField] private AudioClip[] _deathSting;
     [SerializeField] private AudioClip[] _deathVoice;
@@ -45,6 +66,9 @@ public class PlayerAudioCues : MonoBehaviour
         EventManager.PlayerHurt += OnHurt;
         EventManager.PlayerHealthChange += OnHealthChanged;
         EventManager.PlayerDied += OnDied;
+        EventManager.PlayerEatStarted += OnEatStarted;
+        EventManager.PlayerEatEnded += OnEatEnded;
+        EventManager.VictimDrained += OnVictimDrained;
     }
 
     private void OnDisable()
@@ -52,6 +76,43 @@ public class PlayerAudioCues : MonoBehaviour
         EventManager.PlayerHurt -= OnHurt;
         EventManager.PlayerHealthChange -= OnHealthChanged;
         EventManager.PlayerDied -= OnDied;
+        EventManager.PlayerEatStarted -= OnEatStarted;
+        EventManager.PlayerEatEnded -= OnEatEnded;
+        EventManager.VictimDrained -= OnVictimDrained;
+
+        // Leaving the scene mid bite would otherwise strand the loop playing forever,
+        // since the manager outlives this object. InstanceIfExists rather than Instance,
+        // because the creating getter would spawn a manager during teardown.
+        if (AudioManager.InstanceIfExists != null) AudioManager.InstanceIfExists.StopLoop();
+    }
+
+    private void OnEatStarted()
+    {
+        AudioManager audio = AudioManager.Instance;
+        if (audio == null) return;
+
+        if (Random.value <= _eatStartChance) audio.PlayRandomSound(_eatStart);
+        audio.PlayLoop(_eatLoop);
+    }
+
+    private void OnEatEnded()
+    {
+        if (AudioManager.InstanceIfExists != null) AudioManager.InstanceIfExists.StopLoop();
+    }
+
+    private void OnVictimDrained()
+    {
+        AudioManager audio = AudioManager.Instance;
+        if (audio == null) return;
+
+        audio.PlayRandomSound(_victimDeath);
+
+        // The satisfied line waits, so it lands after the victim's reaction rather than
+        // talking over the top of it.
+        if (_eatVoice != null && _eatVoice.Length > 0 && Random.value <= _eatVoiceChance)
+        {
+            StartCoroutine(PlayVoiceAfter(_eatVoiceDelay, _eatVoice));
+        }
     }
 
     private void OnHurt()
@@ -98,15 +159,17 @@ public class PlayerAudioCues : MonoBehaviour
         {
             // Unscaled, because a death sequence that freezes time would otherwise
             // swallow the line entirely.
-            StartCoroutine(PlayVoiceAfter(_deathVoiceDelay));
+            StartCoroutine(PlayVoiceAfter(_deathVoiceDelay, _deathVoice));
         }
     }
 
-    private System.Collections.IEnumerator PlayVoiceAfter(float delay)
+    private System.Collections.IEnumerator PlayVoiceAfter(float delay, AudioClip[] clips)
     {
+        // Unscaled, because a sequence that freezes time would otherwise swallow the line.
         yield return new WaitForSecondsRealtime(delay);
+
         AudioManager audio = AudioManager.Instance;
-        if (audio != null) audio.PlayRandomVoice(_deathVoice);
+        if (audio != null) audio.PlayRandomVoice(clips);
     }
 
     private void TryPlayVoice(AudioClip[] clips)

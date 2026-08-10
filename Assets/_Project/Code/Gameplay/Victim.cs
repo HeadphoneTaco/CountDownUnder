@@ -64,6 +64,8 @@ public class Victim : MonoBehaviour
         _isDead = true;
         if (_collider != null) _collider.enabled = false;
 
+        EventManager.VictimDrained?.Invoke();
+
         //if (_animator != null && _deathController != null)
         //    _animator.runtimeAnimatorController = _deathController;
         _anim.SetTrigger("Death");
