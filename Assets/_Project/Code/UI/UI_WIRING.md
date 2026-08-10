@@ -64,8 +64,19 @@ On `[UI]GameVer3 > Canvas > [UI]PauseMenu`, add **`PauseMenuUI`**:
 
 | Field | Assign |
 |---|---|
-| Pause Root | `[UI]PauseMenu` itself |
+| Pause Root | `PauseScreen`, the **child**. Not `[UI]PauseMenu` itself. |
 | Buttons Panel | `PauseScreen > Buttons` |
+| Settings / Controls Panel | Leave **empty** until those panels exist |
+| Resume / Settings / Controls / Main Menu Button | Drag the four button objects from the Hierarchy |
+
+> **Do not wire the buttons' OnClick lists.** Drag the buttons *into this script* instead. A button prefab cannot hold a reference to anything outside itself, so wiring OnClick in Prefab Mode saves the method name and silently drops the target to `None`, giving you a button that looks correct and does nothing. The script subscribes at runtime instead, which keeps every reference inside `[UI]GameVer3`.
+
+> `[UI]PauseMenu` must stay **active** in the hierarchy. It holds the script. If Pause Root points at the same object the script is on, hiding the menu also switches the script off, Unity skips `OnEnable`, and it never hears the unpause. The script now refuses to run in that setup and says so.
+
+> **Settings Panel and Controls Panel take panels, not buttons.** Assigning `SettingsButton` there makes that button disappear, because the field is hidden whenever the button column is shown. Leave both empty until the real panels are instanced.
+
+> **The scene needs an EventSystem** (`GameObject > UI > Event System`). Without one, no UI anywhere in the scene is clickable and buttons will not even highlight. Kyle's level scene did not have one.
+
 | Settings Panel | `[UI]Settings` instance under `[UI]PauseMenu` |
 | Controls Panel | Holder containing the `[UI]ControlsA` instance |
 | First Selected | Resume button |
@@ -78,6 +89,20 @@ On `[UI]GameVer3 > Canvas > [UI]PauseMenu`, add **`PauseMenuUI`**:
 - `ControlsButton` → `PauseMenuUI.OnControlsPressed`
 - `MainMenuButton` → `PauseMenuUI.OnQuitToMenuPressed`
 - Back buttons → `PauseMenuUI.OnBackPressed`
+
+### Nesting `[UI]Settings` and `[UI]ControlsA` as panels
+
+These two were built as standalone screens, not panels. Their root is a plain `Transform` wrapping a child `Canvas`, and that child's RectTransform is serialised at **scale 0, size 0** because a live Canvas drives those values and overwrites them. Drag the wrapper in and the layout chain breaks; delete the Canvas component and the zeros go live and collapse it to an invisible point.
+
+Convert each one like this:
+
+1. Drag the **inner `Canvas` child** into `PauseScreen`, not the `[UI]Settings` wrapper. Discard the wrapper.
+2. Remove `Canvas`, `Canvas Scaler`, and `Graphic Raycaster`. Keep the RectTransform.
+3. **Set Scale to `1, 1, 1`.** This is the step that makes it appear.
+4. Set anchors to stretch, `min 0,0` / `max 1,1`, and Left/Right/Top/Bottom to 0.
+5. Rename to `SettingsPanel` / `ControlsPanel` and assign to the matching field.
+
+`PauseMenuUI` now warns on open if a panel has zero scale, zero size, or a non-RectTransform.
 
 ## 5. Settings
 

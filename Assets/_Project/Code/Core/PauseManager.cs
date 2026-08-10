@@ -72,7 +72,9 @@ public class PauseManager : Singleton<PauseManager>
         if (paused && EventManager.GamePauseChanged == null)
         {
             Debug.LogWarning("[PauseManager] Paused, but no UI is listening, so the screen will just freeze. " +
-                             "Drag [UI]GameVer3 into the scene and put PauseMenuUI on its [UI]PauseMenu object.", this);
+                             "Either there is no PauseMenuUI in the scene, or there is one that never reached " +
+                             "OnEnable because its GameObject starts inactive. A pause menu script has to live " +
+                             "on an object that stays active and toggle a child panel.", this);
         }
 
         EventManager.GamePauseChanged?.Invoke(paused);
