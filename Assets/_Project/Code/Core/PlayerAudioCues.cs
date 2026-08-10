@@ -52,7 +52,12 @@ public class PlayerAudioCues : MonoBehaviour
 
     [Header("Death")]
     [SerializeField] private AudioClip[] _deathSting;
+
+    [Tooltip("General death lines. Used for blood loss, and for sunrise if no sunrise lines are set.")]
     [SerializeField] private AudioClip[] _deathVoice;
+
+    [Tooltip("Optional lines specific to being caught by the sunrise, such as The Sun or Sunrise.")]
+    [SerializeField] private AudioClip[] _sunriseVoice;
 
     [Tooltip("Seconds after the death sting before the voice line, so they do not collide.")]
     [SerializeField] private float _deathVoiceDelay = 0.6f;
@@ -145,7 +150,7 @@ public class PlayerAudioCues : MonoBehaviour
         }
     }
 
-    private void OnDied()
+    private void OnDied(DeathCause cause)
     {
         if (_dead) return;
         _dead = true;
@@ -155,11 +160,17 @@ public class PlayerAudioCues : MonoBehaviour
 
         audio.PlayRandomSound(_deathSting);
 
-        if (_deathVoice != null && _deathVoice.Length > 0)
+        // Sunrise gets its own lines when supplied, since "The Sun" and "Sunrise" only
+        // make sense for that ending. Falls back to the general set otherwise.
+        AudioClip[] lines = cause == DeathCause.Sunrise && _sunriseVoice != null && _sunriseVoice.Length > 0
+            ? _sunriseVoice
+            : _deathVoice;
+
+        if (lines != null && lines.Length > 0)
         {
             // Unscaled, because a death sequence that freezes time would otherwise
             // swallow the line entirely.
-            StartCoroutine(PlayVoiceAfter(_deathVoiceDelay, _deathVoice));
+            StartCoroutine(PlayVoiceAfter(_deathVoiceDelay, lines));
         }
     }
 

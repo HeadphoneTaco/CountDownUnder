@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
         // would sit on whatever fill the prefab was saved with until the first hit lands.
         // Start runs after every OnEnable, so everyone is listening by now.
         EventManager.PlayerHealthChange?.Invoke(_CurrentBlood / HitInfo.MaxBloodPoints);
+        BroadcastBatTime();
     }
 
     public void Update()
@@ -136,6 +137,7 @@ public class PlayerController : MonoBehaviour
     public bool ReduceBatTime()
     {
         _currentBatTime = Mathf.Clamp(_currentBatTime - BatInfo.BatTimeDrainRate * Time.deltaTime, 0, BatInfo.MaxBatTime);
+        BroadcastBatTime();
         if (_currentBatTime == 0)
         {
             LastBatBreakTime = Time.time;
@@ -153,6 +155,16 @@ public class PlayerController : MonoBehaviour
         {
             _currentBatTime = Mathf.Clamp( _currentBatTime + BatInfo.BatTimeFillRate * Time.deltaTime / Reducer, 0, BatInfo.MaxBatTime );
         }
+        BroadcastBatTime();
+    }
+
+    /// <summary>
+    /// Bat time was tracked but never announced, so the meter had nothing to listen to.
+    /// </summary>
+    private void BroadcastBatTime()
+    {
+        if (BatInfo.MaxBatTime <= 0f) return;
+        EventManager.BatTimeChanged?.Invoke(_currentBatTime / BatInfo.MaxBatTime);
     }
     public void ChangeBloodPoints(float ChangeBy)
     {
@@ -179,7 +191,16 @@ public class PlayerController : MonoBehaviour
         }
         EventManager.PlayerHealthChange?.Invoke(_CurrentBlood/HitInfo.MaxBloodPoints);
     }
-    private void Die()
+    /// <summary>
+    /// Kill the player from outside, for example when the sun comes up. Blood loss goes
+    /// through ChangeBloodPoints instead and arrives at the same place.
+    /// </summary>
+    public void Kill(DeathCause cause)
+    {
+        Die(cause);
+    }
+
+    private void Die(DeathCause cause = DeathCause.BloodLoss)
     {
         // ChangeBloodPoints can be reached more than once in the frame a run ends, and a
         // second death would restart the whole end sequence.
@@ -195,7 +216,7 @@ public class PlayerController : MonoBehaviour
         if (PauseManager.InstanceIfExists != null) PauseManager.InstanceIfExists.SetPauseAllowed(false);
         if (InputManager.InstanceIfExists != null) InputManager.InstanceIfExists.SetGameplayInputEnabled(false);
 
-        EventManager.PlayerDied?.Invoke();
+        EventManager.PlayerDied?.Invoke(cause);
     }
 
     /// <summary>True while the player cannot be hit again. Read by anything that wants to flicker the sprite.</summary>

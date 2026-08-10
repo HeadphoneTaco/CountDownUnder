@@ -146,11 +146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1392320410183014006, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 358
+      value: 509
       objectReference: {fileID: 0}
     - target: {fileID: 1392320410183014006, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 247
+      value: 316
       objectReference: {fileID: 0}
     - target: {fileID: 4367157372105791148, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -208,6 +208,10 @@ PrefabInstance:
       propertyPath: _hurtFlashDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6318741919211995474, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6326844836969425594, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -251,8 +255,85 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 452330518900015773, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 290145073}
+    - targetCorrespondingSourceObject: {fileID: 4911923222952398997, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 290145072}
   m_SourcePrefab: {fileID: 100100000, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+--- !u!224 &290145067 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8340416195737248094, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+  m_PrefabInstance: {fileID: 290145066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &290145068 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2140425980116392468, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+  m_PrefabInstance: {fileID: 290145066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &290145069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4911923222952398997, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+  m_PrefabInstance: {fileID: 290145066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &290145070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 452330518900015773, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+  m_PrefabInstance: {fileID: 290145066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &290145071 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2482383616243749382, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+  m_PrefabInstance: {fileID: 290145066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290145070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &290145072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290145069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633604bff219ea54ab988ea03e778f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClockUI
+  _hourHand: {fileID: 290145068}
+  _minuteHand: {fileID: 290145067}
+  _timer: {fileID: 0}
+  _timeLabel: {fileID: 0}
+  _pulseNearSunrise: 1
+  _warningThreshold: 0.2
+  _pulseRate: 2
+  _pulseScale: 0.12
+--- !u!114 &290145073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290145070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b05417b228ccc4da581803d212bf2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BatMeterUI
+  _slider: {fileID: 290145071}
+  _fill: {fileID: 0}
+  _smoothing: 0.05
+  _hideWhenFull: 0
+  _recolourWhenLow: 1
+  _normalColour: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  _lowColour: {r: 0.95, g: 0.3, b: 0.3, a: 1}
+  _lowThreshold: 0.25
 --- !u!1 &572760076 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2092660590622935461, guid: 9c1a19919c252d7488ebc27bd6cf2aef, type: 3}
@@ -427,6 +508,7 @@ GameObject:
   - component: {fileID: 1721818100}
   - component: {fileID: 1721818102}
   - component: {fileID: 1721818101}
+  - component: {fileID: 1721818103}
   m_Layer: 0
   m_Name: '[Managers]'
   m_TagString: Untagged
@@ -513,6 +595,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d652eccf935d3354d9991c77ee06d2e0, type: 3}
   _deathVoice:
   - {fileID: 8300000, guid: f9e38cf73d8216647b6c3e6e5ab11e21, type: 3}
+  _sunriseVoice: []
   _deathVoiceDelay: 0.6
 --- !u!114 &1721818102
 MonoBehaviour:
@@ -526,13 +609,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77f4d7bf0d0b1b48aaf23b84a19b435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunEndController
-  _deathSceneName: EndScreenA
+  _sunriseSceneName: EndScreenA
+  _bloodLossSceneName: EndScreenB
   _winSceneName: EndScreenB
   _deathDelay: 2
   _winDelay: 1.5
   _fadePlayerOnDeath: 1
   _fadeDuration: 1.2
   _playerSprites: []
+--- !u!114 &1721818103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721818097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04571ef1e7d6b5b4ea44f47d69204f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NightTimer
+  _nightDurationSeconds: 180
+  _startOnAwake: 1
+  _startHour: 4
+  _endHour: 7
 --- !u!4 &42012484664316122
 Transform:
   m_ObjectHideFlags: 0

@@ -13,8 +13,11 @@ using UnityEngine.SceneManagement;
 public class RunEndController : MonoBehaviour
 {
     [Header("Scenes")]
-    [Tooltip("Loaded when the player runs out of blood. Must be in Build Settings.")]
-    [SerializeField] private string _deathSceneName = "EndScreenA";
+    [Tooltip("Caught by the sunrise. EndScreenA is the YOU DIED art, a body in a sunbeam.")]
+    [SerializeField] private string _sunriseSceneName = "EndScreenA";
+
+    [Tooltip("Drained dry. EndScreenB is the coffin art.")]
+    [SerializeField] private string _bloodLossSceneName = "EndScreenB";
 
     [Tooltip("Loaded when the player reaches the win trigger. EndScreenC is the airport ending.")]
     [SerializeField] private string _winSceneName = "EndScreenC";
@@ -49,7 +52,11 @@ public class RunEndController : MonoBehaviour
         EventManager.PlayerWon -= OnPlayerWon;
     }
 
-    private void OnPlayerDied() => EndRun(_deathSceneName, _deathDelay, fade: _fadePlayerOnDeath);
+    private void OnPlayerDied(DeathCause cause)
+    {
+        string scene = cause == DeathCause.Sunrise ? _sunriseSceneName : _bloodLossSceneName;
+        EndRun(scene, _deathDelay, fade: _fadePlayerOnDeath);
+    }
 
     private void OnPlayerWon() => EndRun(_winSceneName, _winDelay, fade: false);
 

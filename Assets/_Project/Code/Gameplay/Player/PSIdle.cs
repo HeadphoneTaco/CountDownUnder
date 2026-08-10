@@ -28,7 +28,11 @@ public class PSIdle : IState
     public void Exit()
     {
         EventManager.DIEvent -= ChangeDI;
-        EventManager.JumpEvent = _player.Jump;
+
+        // Was "=" rather than "-=". Assigning replaced the whole invocation list, so
+        // leaving Idle wiped out every other JumpEvent listener instead of removing
+        // this one, and this one was never actually removed.
+        EventManager.JumpEvent -= _player.Jump;
     }
     public void ChangeDI(Vector2 direction)
     {

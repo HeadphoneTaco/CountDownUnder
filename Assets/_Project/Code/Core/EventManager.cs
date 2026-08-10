@@ -8,10 +8,17 @@ public static class EventManager
     public static Action JumpEvent;
     public static Action<float> PlayerHealthChange;
     public static Action PlayerHurt;
-    public static Action PlayerDied;
+    /// <summary>The player is dead. The cause decides which ending is shown.</summary>
+    public static Action<DeathCause> PlayerDied;
 
     /// <summary>The run was completed successfully. Raised by the win trigger.</summary>
     public static Action PlayerWon;
+
+    /// <summary>Bat flight time remaining, 0 to 1.</summary>
+    public static Action<float> BatTimeChanged;
+
+    /// <summary>Night remaining, 1 at dusk down to 0 at sunrise.</summary>
+    public static Action<float> NightTimeChanged;
 
     /// <summary>The player has latched onto a victim and started draining.</summary>
     public static Action PlayerEatStarted;

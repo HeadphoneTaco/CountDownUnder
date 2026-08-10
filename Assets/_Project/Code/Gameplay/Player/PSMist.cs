@@ -59,7 +59,9 @@ public class PSMist : IState
 
     public void Exit()
     {
-        EventManager.DIEvent += ChangeDI;
+        // Was "+=" rather than "-=". Every mist added a second subscription and removed
+        // none, so ChangeDI was called once more per dash for the rest of the run.
+        EventManager.DIEvent -= ChangeDI;
         if (_player != null)
         {
             _player.CanTransform = true;
