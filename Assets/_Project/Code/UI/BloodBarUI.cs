@@ -58,10 +58,25 @@ public class BloodBarUI : MonoBehaviour
     [Tooltip("Pulses per second while critical. 0 holds a flat colour instead.")]
     [SerializeField] private float _criticalPulseRate = 2.2f;
 
+    [Header("Damage Flash")]
+    [Tooltip("Blink the bar for a moment after taking a hit, so the eye is pulled to it.")]
+    [SerializeField] private bool _flashOnHurt = true;
+
+    [Tooltip("Seconds the bar keeps blinking after a hit.")]
+    [SerializeField] private float _hurtFlashDuration = 1.2f;
+
+    [Tooltip("Blinks per second during that window.")]
+    [SerializeField] private float _hurtFlashRate = 6f;
+
+    [SerializeField] private Color _hurtFlashColour = Color.white;
+
     private float _targetFill = 1f;
     private float _displayedFill = 1f;
     private float _chipTimer;
     private Graphic _mainSliderFillGraphic;
+    private float _hurtFlashTimer;
+    private Color _restingFillColour = Color.white;
+    private Color _restingReadoutColour = Color.white;
 
     private void Awake()
     {
@@ -79,6 +94,12 @@ public class BloodBarUI : MonoBehaviour
         {
             _mainSliderFillGraphic = _mainSlider.fillRect.GetComponent<Graphic>();
         }
+
+        // Remember whatever the art was authored with, so the flash has something to
+        // return to when low blood recolouring is switched off.
+        if (_mainSliderFillGraphic != null) _restingFillColour = _mainSliderFillGraphic.color;
+        else if (_mainFill != null) _restingFillColour = _mainFill.color;
+        if (_readout != null) _restingReadoutColour = _readout.color;
 
         // A Simple image ignores fillAmount entirely, which looks like the script is broken.
         if (_mainFill != null && _mainFill.type != Image.Type.Filled)
@@ -104,11 +125,18 @@ public class BloodBarUI : MonoBehaviour
     private void OnEnable()
     {
         EventManager.PlayerHealthChange += OnHealthChanged;
+        EventManager.PlayerHurt += OnHurt;
     }
 
     private void OnDisable()
     {
         EventManager.PlayerHealthChange -= OnHealthChanged;
+        EventManager.PlayerHurt -= OnHurt;
+    }
+
+    private void OnHurt()
+    {
+        if (_flashOnHurt) _hurtFlashTimer = _hurtFlashDuration;
     }
 
     private void OnHealthChanged(float normalised)
@@ -135,12 +163,23 @@ public class BloodBarUI : MonoBehaviour
         if (_mainFill != null) _mainFill.fillAmount = _displayedFill;
         if (_readout != null) _readout.text = string.Format(_readoutFormat, Mathf.CeilToInt(_displayedFill * 100f));
 
-        if (_recolourOnLowBlood)
+        bool wasFlashing = _hurtFlashTimer > 0f;
+        if (wasFlashing) _hurtFlashTimer -= dt;
+
+        // Only touch colours when something actually wants to change them, so a bar with
+        // both options off keeps exactly the colours the art was authored with. The
+        // wasFlashing term matters on the frame the blink expires: without it the bar
+        // would keep whichever half of the blink it happened to stop on.
+        if (_recolourOnLowBlood || wasFlashing)
         {
-            Color colour = CurrentColour();
-            if (_mainSliderFillGraphic != null) _mainSliderFillGraphic.color = colour;
-            if (_mainFill != null) _mainFill.color = colour;
-            if (_readout != null) _readout.color = colour;
+            Color fill = ApplyHurtFlash(_recolourOnLowBlood ? CurrentColour() : _restingFillColour);
+            if (_mainSliderFillGraphic != null) _mainSliderFillGraphic.color = fill;
+            if (_mainFill != null) _mainFill.color = fill;
+
+            if (_readout != null)
+            {
+                _readout.color = ApplyHurtFlash(_recolourOnLowBlood ? CurrentColour() : _restingReadoutColour);
+            }
         }
 
         if (_chipSlider == null && _chipFill == null) return;
@@ -160,6 +199,18 @@ public class BloodBarUI : MonoBehaviour
     {
         if (_chipSlider != null) _chipSlider.value = value;
         if (_chipFill != null) _chipFill.fillAmount = value;
+    }
+
+    /// <summary>
+    /// Square wave rather than a sine, because a hard on/off blink reads as an alarm
+    /// while a smooth fade reads as a slow colour change and is easy to miss.
+    /// </summary>
+    private Color ApplyHurtFlash(Color baseColour)
+    {
+        if (_hurtFlashTimer <= 0f) return baseColour;
+
+        bool on = Mathf.Repeat(_hurtFlashTimer * _hurtFlashRate, 1f) < 0.5f;
+        return on ? _hurtFlashColour : baseColour;
     }
 
     private Color CurrentColour()
