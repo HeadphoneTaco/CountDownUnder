@@ -96,9 +96,15 @@ public class SettingsPanelUI : MonoBehaviour
             _mixer.SetFloat(_bgmExposedParam, LinearToDecibels(_bgm));
             _mixer.SetFloat(_sfxExposedParam, LinearToDecibels(_sfx));
         }
+        else if (Core.AudioManager.Instance != null)
+        {
+            // Per channel, so the two sliders actually do different things.
+            Core.AudioManager.Instance.SetBgmVolume(_bgm);
+            Core.AudioManager.Instance.SetSfxVolume(_sfx);
+        }
         else
         {
-            // Blunt fallback so the BGM slider is audibly connected to something.
+            // Blunt last resort when there is no AudioManager in the scene at all.
             AudioListener.volume = _bgm;
         }
 
