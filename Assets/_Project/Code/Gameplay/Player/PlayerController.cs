@@ -40,13 +40,20 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public PlayerAnimator MyAnimator;
 
     [Header("Player Particles")]
-    [SerializeField] public ParticleSystem MistParticlesPerson;
-    [SerializeField] public ParticleSystem MistParticlesBat;
-    [SerializeField] public ParticleSystem MistParticlesTrail;
+    // The old MistParticlesPerson/Bat/Trail fields are gone. Their names had drifted away
+    // from what was actually plugged into them: Person held the BloodSplatter, which is
+    // why blood sprayed on every de-mist. Named for the effect now, not the form.
 
     [Tooltip("The BloodSplatter under Particles. One-shot burst fired when a bite lands. " +
              "Leave empty and a child named BloodSplatter is found automatically.")]
     [SerializeField] public ParticleSystem BloodSplatter;
+
+    [Tooltip("One-shot puff. Fires at the start and again at the end of a dash, and on every " +
+             "bat/human change. Leave empty to auto-find a child named SmokeBurst.")]
+    [SerializeField] public ParticleSystem SmokeBurst;
+
+    [Tooltip("Streak that runs for the length of the dash. Auto-finds a child named SmokeTrail.")]
+    [SerializeField] public ParticleSystem SmokeTrail;
     
 
     private void Awake()
@@ -114,26 +121,46 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Falls back to a child named BloodSplatter when the field was left empty, so the
-    /// effect works without a manual drag. An explicit assignment always wins, and the
-    /// fallback says what it picked so a rename does not fail silently.
+    /// Fills any empty particle field from a child of the same name, so the effects work
+    /// without a manual drag. An explicit assignment always wins.
+    ///
+    /// Also silences Play On Awake. Both smoke prefabs ship with it enabled, which fires
+    /// them once at scene load and then never again, because nothing was triggering them.
     /// </summary>
     private void ResolveBloodSplatter()
     {
-        if (BloodSplatter != null) return;
+        BloodSplatter = ResolveParticle(BloodSplatter, "BloodSplatter");
+        SmokeBurst = ResolveParticle(SmokeBurst, "SmokeBurst");
+        SmokeTrail = ResolveParticle(SmokeTrail, "SmokeTrail");
+
+        SilenceOnAwake(BloodSplatter);
+        SilenceOnAwake(SmokeBurst);
+        SilenceOnAwake(SmokeTrail);
+    }
+
+    private ParticleSystem ResolveParticle(ParticleSystem assigned, string childName)
+    {
+        if (assigned != null) return assigned;
 
         foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>(true))
         {
-            if (!ps.name.Contains("BloodSplatter")) continue;
+            if (!ps.name.Contains(childName)) continue;
 
-            BloodSplatter = ps;
-            Debug.Log($"[PlayerController] Blood Splatter was empty, using the child '{ps.name}'. " +
-                      "Assign it in the Inspector to be explicit.", this);
-            return;
+            Debug.Log($"[PlayerController] {childName} was empty, using the child '{ps.name}'.", this);
+            return ps;
         }
 
-        Debug.LogWarning("[PlayerController] No Blood Splatter assigned and no child named BloodSplatter found, " +
-                         "so eating will not spray.", this);
+        Debug.LogWarning($"[PlayerController] No {childName} assigned and no child of that name found.", this);
+        return null;
+    }
+
+    private static void SilenceOnAwake(ParticleSystem ps)
+    {
+        if (ps == null) return;
+
+        ParticleSystem.MainModule main = ps.main;
+        main.playOnAwake = false;
+        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     private bool GroundedCheck()
