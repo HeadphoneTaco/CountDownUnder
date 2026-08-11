@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public ParticleSystem MistParticlesBat;
     [SerializeField] public ParticleSystem MistParticlesTrail;
 
+    [Tooltip("The BloodSplatter under Particles. One-shot burst fired when a bite lands. " +
+             "Leave empty and a child named BloodSplatter is found automatically.")]
+    [SerializeField] public ParticleSystem BloodSplatter;
+    
+
     private void Awake()
     {
         MyStateMachine = new PlayerStateMachine(this);
@@ -51,6 +56,7 @@ public class PlayerController : MonoBehaviour
         _groundLayerIndex = LayerMask.GetMask(_groundLayerName);
         VictimLayerIndex = LayerMask.GetMask(_victimLayerName);
         RB = GetComponent<Rigidbody2D>();
+        ResolveBloodSplatter();
 
         // Max blood is the divisor for every normalised health value the HUD reads.
         // At zero that division is 0/0, so the bar gets NaN and the player starts empty.
@@ -92,6 +98,10 @@ public class PlayerController : MonoBehaviour
         // FixedUpdate already stops on its own at timeScale 0, but Update does not,
         // so the state machine would keep ticking behind the pause menu.
         if (IsDead || PauseManager.IsPaused) return;
+
+        ApplyPassiveDrain();
+        if (IsDead) return;
+
         MyStateMachine.Execute();
     }
     public void FixedUpdate()
@@ -101,6 +111,29 @@ public class PlayerController : MonoBehaviour
         IsGrounded = GroundedCheck();
         if (!_transformationReady) ReduceTransformationCooldown();
         MyStateMachine.FixedUpdate();
+    }
+
+    /// <summary>
+    /// Falls back to a child named BloodSplatter when the field was left empty, so the
+    /// effect works without a manual drag. An explicit assignment always wins, and the
+    /// fallback says what it picked so a rename does not fail silently.
+    /// </summary>
+    private void ResolveBloodSplatter()
+    {
+        if (BloodSplatter != null) return;
+
+        foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>(true))
+        {
+            if (!ps.name.Contains("BloodSplatter")) continue;
+
+            BloodSplatter = ps;
+            Debug.Log($"[PlayerController] Blood Splatter was empty, using the child '{ps.name}'. " +
+                      "Assign it in the Inspector to be explicit.", this);
+            return;
+        }
+
+        Debug.LogWarning("[PlayerController] No Blood Splatter assigned and no child named BloodSplatter found, " +
+                         "so eating will not spray.", this);
     }
 
     private bool GroundedCheck()
@@ -167,7 +200,22 @@ public class PlayerController : MonoBehaviour
         if (BatInfo.MaxBatTime <= 0f) return;
         EventManager.BatTimeChanged?.Invoke(_currentBatTime / BatInfo.MaxBatTime);
     }
-    public void ChangeBloodPoints(float ChangeBy)
+    /// <summary>
+    /// The slow bleed that makes hunting compulsory. Kept separate from ChangeBloodPoints
+    /// because that one raises PlayerHurt on any loss, which would fire the hit flash and
+    /// the ouch sound every single frame.
+    /// </summary>
+    private void ApplyPassiveDrain()
+    {
+        float drain = HitInfo.PassiveBloodDrainRate * Time.deltaTime;
+        if (drain <= 0f) return;
+
+        ChangeBloodPoints(-drain, countsAsHit: false);
+    }
+
+    public void ChangeBloodPoints(float ChangeBy) => ChangeBloodPoints(ChangeBy, true);
+
+    public void ChangeBloodPoints(float ChangeBy, bool countsAsHit)
     {
         if (ChangeBy == 0) Debug.Log("No Change in Blood");
         else if (ChangeBy < 0)
@@ -180,7 +228,7 @@ public class PlayerController : MonoBehaviour
                 Die();
             }
             else _CurrentBlood += ChangeBy;
-            EventManager.PlayerHurt?.Invoke();
+            if (countsAsHit) EventManager.PlayerHurt?.Invoke();
         }
         else
         {

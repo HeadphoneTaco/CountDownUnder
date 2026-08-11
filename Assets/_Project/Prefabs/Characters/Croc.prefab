@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a24ef10cdb5e7c47a8e6a4ef48a4db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.MovingObstacle
-  _obstacleInfo: {fileID: 11400000, guid: 2d419a22c9663e04793db56a9569a30a, type: 2}
+  _obstacleInfo: {fileID: 11400000, guid: 01ffaf86edb6df14290732f468c229fd, type: 2}
   _biteInfo: {fileID: 11400000, guid: a22e0a3f62a4cbe4da0ce08547fe475b, type: 2}
   _searchInfo: {fileID: 11400000, guid: b8c8e17b93faf9d429b55e3d92a5c359, type: 2}
   _idleInfo: {fileID: 11400000, guid: d28e8d71b0fa62b458196cfca9084426, type: 2}

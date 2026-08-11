@@ -77,6 +77,27 @@ public class NightTimer : MonoBehaviour
 
     public void Pause() => _running = false;
 
+    /// <summary>
+    /// Testing hook. Right-click the NightTimer component in play mode and pick this
+    /// rather than sitting through the whole night to check the ending.
+    /// </summary>
+    [ContextMenu("Skip To Sunrise")]
+    public void SkipToSunrise()
+    {
+        if (!Application.isPlaying)
+        {
+            Debug.LogWarning("[NightTimer] Skip To Sunrise only works in play mode.", this);
+            return;
+        }
+
+        _remaining = 0.01f;
+        _running = true;
+        _expired = false;
+    }
+
+    /// <summary>Seconds left, for a countdown readout or a debug display.</summary>
+    public float SecondsRemaining => _remaining;
+
     /// <summary>Give the player time back. Feeding could reward a few seconds, for instance.</summary>
     public void AddTime(float seconds)
     {

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1280, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4896430940248894558
@@ -149,6 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 607542987506081218}
+  - component: {fileID: 303249804478480175}
   m_Layer: 0
   m_Name: '[UI]EndScreenA'
   m_TagString: Untagged
@@ -172,6 +173,26 @@ Transform:
   - {fileID: 1524938333038088188}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &303249804478480175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5929264452259515049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a30ae39dddf2e4aae4fdf118cd4307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
+  _gameSceneName: Game
+  _settingsSceneName: SettingsMenu
+  _mainMenuSceneName: MainMenu
+  _playButton: {fileID: 0}
+  _replayButton: {fileID: 4345358115817832398}
+  _settingsButton: {fileID: 6416349760047210046}
+  _mainMenuButton: {fileID: 2238572507327273183}
+  _quitButton: {fileID: 0}
 --- !u!1 &7192302391895232337
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,18 +337,6 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 500579115633242466, guid: a7de612d04615f34384636f8ecace4f4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.1052632
-      objectReference: {fileID: 0}
-    - target: {fileID: 500579115633242466, guid: a7de612d04615f34384636f8ecace4f4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.1052632
-      objectReference: {fileID: 0}
-    - target: {fileID: 500579115633242466, guid: a7de612d04615f34384636f8ecace4f4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.1052632
-      objectReference: {fileID: 0}
-    - target: {fileID: 500579115633242466, guid: a7de612d04615f34384636f8ecace4f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -389,6 +398,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 500579115633242466, guid: a7de612d04615f34384636f8ecace4f4, type: 3}
   m_PrefabInstance: {fileID: 933106975807440313}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6416349760047210046 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6194837374765620103, guid: a7de612d04615f34384636f8ecace4f4, type: 3}
+  m_PrefabInstance: {fileID: 933106975807440313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1863384464999932983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,18 +448,6 @@ PrefabInstance:
     - target: {fileID: 4776232120904850106, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
       propertyPath: m_SizeDelta.y
       value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776232120904850106, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.1052632
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776232120904850106, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.1052632
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776232120904850106, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.1052632
       objectReference: {fileID: 0}
     - target: {fileID: 4776232120904850106, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -498,6 +506,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
+--- !u!114 &2238572507327273183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 490069486120991976, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
+  m_PrefabInstance: {fileID: 1863384464999932983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &6599048349357538957 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4776232120904850106, guid: 7914d76f14805eb4499ca528a63e110a, type: 3}
@@ -546,18 +565,6 @@ PrefabInstance:
     - target: {fileID: 3776059406185409811, guid: 0949b55ac415d9c4b8fc52e57cab5076, type: 3}
       propertyPath: m_SizeDelta.y
       value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776059406185409811, guid: 0949b55ac415d9c4b8fc52e57cab5076, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.1052632
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776059406185409811, guid: 0949b55ac415d9c4b8fc52e57cab5076, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.1052632
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776059406185409811, guid: 0949b55ac415d9c4b8fc52e57cab5076, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.1052632
       objectReference: {fileID: 0}
     - target: {fileID: 3776059406185409811, guid: 0949b55ac415d9c4b8fc52e57cab5076, type: 3}
       propertyPath: m_LocalPosition.x
@@ -617,3 +624,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3776059406185409811, guid: 0949b55ac415d9c4b8fc52e57cab5076, type: 3}
   m_PrefabInstance: {fileID: 2096510592144353761}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4345358115817832398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2401999053181490735, guid: 0949b55ac415d9c4b8fc52e57cab5076, type: 3}
+  m_PrefabInstance: {fileID: 2096510592144353761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button

@@ -152,6 +152,8 @@ MonoBehaviour:
   bgAudioSource: {fileID: 0}
   ambientAudioSource: {fileID: 0}
   voiceAudioSource: {fileID: 0}
+  loopAudioSource: {fileID: 0}
+  voiceGain: 1.4
   bgMusic:
   - {fileID: 8300000, guid: cfbe7ad58eb2e6544a0aec6a719899e5, type: 3}
   - {fileID: 8300000, guid: 34210b72d6d60a54f9560b83eb3c9464, type: 3}

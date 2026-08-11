@@ -4982,7 +4982,7 @@ Transform:
   - {fileID: 1255001683828327993}
   - {fileID: 2566455468754029742}
   - {fileID: 3030327296767728718}
-  - {fileID: 5692328950297971022}
+  - {fileID: 2845071698052980599}
   m_Father: {fileID: 1587081271331284175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1850857746959313030
@@ -10270,9 +10270,9 @@ MonoBehaviour:
   Food: {fileID: 0}
   _animator: {fileID: 4723287113241882661}
   _bat: {fileID: 587321217596036145}
-  MistParticlesPerson: {fileID: 2235052442193596740}
-  MistParticlesBat: {fileID: 8264419787467510732}
-  MistParticlesTrail: {fileID: 761167554509165268}
+  MistParticlesPerson: {fileID: 8646029482428899394, guid: e48bd639bc2dcdc44be687fc5bb30d1e, type: 3}
+  MistParticlesBat: {fileID: 4944755255503877086, guid: fe2d31d2dc7360b40a099a05342b2ac3, type: 3}
+  MistParticlesTrail: {fileID: 5323500392797211516, guid: e2aa1a69a963d4e4cb6946bab1fd7d34, type: 3}
 --- !u!50 &8875914585725093373
 Rigidbody2D:
   serializedVersion: 5
@@ -10402,7 +10402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1255001683828327993
 Transform:
   m_ObjectHideFlags: 0
@@ -15246,7 +15246,7 @@ ParticleSystemRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -15279,7 +15279,7 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
---- !u!1001 &7822416311902714061
+--- !u!1001 &363173737341087476
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -15327,18 +15327,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8646029482428899394, guid: e48bd639bc2dcdc44be687fc5bb30d1e, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.13950695
-      objectReference: {fileID: 0}
-    - target: {fileID: 8646029482428899394, guid: e48bd639bc2dcdc44be687fc5bb30d1e, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.13950695
-      objectReference: {fileID: 0}
-    - target: {fileID: 8646029482428899394, guid: e48bd639bc2dcdc44be687fc5bb30d1e, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.8962264
-      objectReference: {fileID: 0}
     - target: {fileID: 8743524716381224988, guid: e48bd639bc2dcdc44be687fc5bb30d1e, type: 3}
       propertyPath: m_Name
       value: BloodSplatter
@@ -15348,8 +15336,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48bd639bc2dcdc44be687fc5bb30d1e, type: 3}
---- !u!4 &5692328950297971022 stripped
+--- !u!4 &2845071698052980599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2482038878756696451, guid: e48bd639bc2dcdc44be687fc5bb30d1e, type: 3}
-  m_PrefabInstance: {fileID: 7822416311902714061}
+  m_PrefabInstance: {fileID: 363173737341087476}
   m_PrefabAsset: {fileID: 0}

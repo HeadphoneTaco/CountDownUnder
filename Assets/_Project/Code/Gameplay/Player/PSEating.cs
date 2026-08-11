@@ -27,10 +27,22 @@ public class PSEating : IState
 
         _player.MyAnimator.ChangeState(PlayerAnimationState.EATING);
         _player.CanTransform = false;
-        _player.transform.position = _player.Food.transform.position;
+
+        // Snap to the victim on X and Y only. Victims are deliberately offset in +Z so the
+        // player can detect them, and copying the whole position dragged the player, and
+        // the Main Camera parented to him, off the gameplay plane on every bite.
+        Vector3 bitePosition = _player.Food.transform.position;
+        bitePosition.z = _player.transform.position.z;
+        _player.transform.position = bitePosition;
+
         _player.RB.linearVelocity = Vector2.zero;
 
         _eating = true;
+
+        // BloodSplatter is a one-shot burst, so it is fired on the bite and left to finish
+        // on its own. Nothing needs to stop it.
+        if (_player.BloodSplatter != null) _player.BloodSplatter.Play();
+
         EventManager.PlayerEatStarted?.Invoke();
     }
 

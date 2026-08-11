@@ -503,7 +503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1392320410183014006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -520,7 +520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 575, y: 315}
+  m_AnchoredPosition: {x: 509, y: 316}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1507600020760087333
@@ -1010,11 +1010,49 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5200591783315008563, guid: e38b19bd0e4ddc749aaa9362687e3162, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5561438227335923833}
   m_SourcePrefab: {fileID: 100100000, guid: e38b19bd0e4ddc749aaa9362687e3162, type: 3}
+--- !u!224 &2140425980116392468 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1275306629826700978, guid: e38b19bd0e4ddc749aaa9362687e3162, type: 3}
+  m_PrefabInstance: {fileID: 866554293293923494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4911923222952398997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5200591783315008563, guid: e38b19bd0e4ddc749aaa9362687e3162, type: 3}
+  m_PrefabInstance: {fileID: 866554293293923494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5561438227335923833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4911923222952398997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633604bff219ea54ab988ea03e778f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClockUI
+  _hourHand: {fileID: 2140425980116392468}
+  _minuteHand: {fileID: 8340416195737248094}
+  _timer: {fileID: 0}
+  _timeLabel: {fileID: 0}
+  _pulseNearSunrise: 1
+  _warningThreshold: 0.2
+  _pulseRate: 2
+  _pulseScale: 0.12
 --- !u!224 &7676907512316493377 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7390200540232762087, guid: e38b19bd0e4ddc749aaa9362687e3162, type: 3}
+  m_PrefabInstance: {fileID: 866554293293923494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &8340416195737248094 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9203531207521525240, guid: e38b19bd0e4ddc749aaa9362687e3162, type: 3}
   m_PrefabInstance: {fileID: 866554293293923494}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1767928846461959707
@@ -1116,13 +1154,52 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2220259079746321542, guid: 15d185f70106f9b4ea48268a526a3981, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1056177449814100248}
   m_SourcePrefab: {fileID: 100100000, guid: 15d185f70106f9b4ea48268a526a3981, type: 3}
+--- !u!1 &452330518900015773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2220259079746321542, guid: 15d185f70106f9b4ea48268a526a3981, type: 3}
+  m_PrefabInstance: {fileID: 1767928846461959707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1056177449814100248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452330518900015773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b05417b228ccc4da581803d212bf2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BatMeterUI
+  _slider: {fileID: 2482383616243749382}
+  _fill: {fileID: 0}
+  _smoothing: 0.05
+  _hideWhenFull: 0
+  _recolourWhenLow: 1
+  _normalColour: {r: 0.55, g: 0.4, b: 0.85, a: 1}
+  _lowColour: {r: 0.95, g: 0.3, b: 0.3, a: 1}
+  _lowThreshold: 0.25
 --- !u!224 &1173695076477165475 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 630852077975511480, guid: 15d185f70106f9b4ea48268a526a3981, type: 3}
   m_PrefabInstance: {fileID: 1767928846461959707}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2482383616243749382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4250205440709930013, guid: 15d185f70106f9b4ea48268a526a3981, type: 3}
+  m_PrefabInstance: {fileID: 1767928846461959707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452330518900015773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1001 &4204069254336023405
 PrefabInstance:
   m_ObjectHideFlags: 0
