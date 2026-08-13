@@ -531,6 +531,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 310892678246838821, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 310892678246838821, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 310892678246838821, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fe1ed73710d0e3945ae26cab8053e110, type: 3}
+    - target: {fileID: 310892678246838821, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 587321217596036145, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1587081271331284175, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 337.98
@@ -570,6 +590,14 @@ PrefabInstance:
     - target: {fileID: 1587081271331284175, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353082181402192810, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2353082181402192810, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5713690896636390920, guid: 8e28e0a3c13ec36419337b6f0c201bf0, type: 3}
       propertyPath: m_Name
