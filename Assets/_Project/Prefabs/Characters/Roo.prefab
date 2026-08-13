@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8383024884416820405}
   - component: {fileID: 3414872057681461400}
   - component: {fileID: 7527399658776226492}
+  - component: {fileID: 1765929728880956043}
+  - component: {fileID: 1765929728880956044}
   m_Layer: 0
   m_Name: Roo
   m_TagString: Untagged
@@ -84,7 +86,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7525690187388324837, guid: deba80e46e8d3a840919b18e81922857, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7fc53126b087e264e9be319e19e3a94e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -184,3 +186,41 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.72380733, y: 0.6277952}
   m_EdgeRadius: 0
+--- !u!95 &1765929728880956043
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945605081445575354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b7aeabd4fef6684fa02a65e51609183, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage:
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1765929728880956044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945605081445575354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2d81f0b3c74a5d9e04f7261ac8b539, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Assets._Project.Code.Gameplay.Obstacles.ObstacleAnimator
+  _referenceSpeed: 2
+  _minimumPlaybackRate: 0
+  _maximumPlaybackRate: 2
+  _smoothingTime: 0.1
