@@ -4129,7 +4129,7 @@ MonoBehaviour:
   _hurtVoice:
   - {fileID: 8300000, guid: 06cb4ac1cfc190245b8fa74f85a50cee, type: 3}
   - {fileID: 8300000, guid: e6a64db2748871b47b5a5894c247418d, type: 3}
-  _hurtVoiceChance: 0.35
+  _hurtVoiceChance: 1
   _voiceCooldown: 2
   _lowBloodVoice:
   - {fileID: 8300000, guid: edc414249e7a3004f9bbfde02074a150, type: 3}
@@ -4139,7 +4139,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 70a4127ebca9a4d4cb1eea1b3848bbc1, type: 3}
   - {fileID: 8300000, guid: bb4215341817c994eb54f53ef4874e79, type: 3}
   - {fileID: 8300000, guid: d995e37e62b330541a7e6a97c28db3bc, type: 3}
-  _eatStartChance: 0.542
+  _eatStartChance: 1
   _eatLoop: {fileID: 0}
   _victimDeath: []
   _eatVoice: []
@@ -5105,7 +5105,7 @@ MonoBehaviour:
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 1
-    Time: 0.093
+    Time: 0.12
     Smoothing: 3.5
     IgnoreY: 0
 --- !u!114 &1960101445
