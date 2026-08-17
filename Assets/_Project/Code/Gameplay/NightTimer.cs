@@ -98,6 +98,10 @@ public class NightTimer : MonoBehaviour
     /// <summary>Seconds left, for a countdown readout or a debug display.</summary>
     public float SecondsRemaining => _remaining;
 
+    /// <summary>Full length of the night in real seconds, for systems that want to tune
+    /// themselves against it rather than against a 0 to 1 value.</summary>
+    public float NightDurationSeconds => _nightDurationSeconds;
+
     /// <summary>Give the player time back. Feeding could reward a few seconds, for instance.</summary>
     public void AddTime(float seconds)
     {
