@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1334,11 +1334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4338785079645009087, guid: 516029564deeb534aa1924383ceb530d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 17.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4338785079645009087, guid: 516029564deeb534aa1924383ceb530d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4338785079645009087, guid: 516029564deeb534aa1924383ceb530d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1373,6 +1373,10 @@ PrefabInstance:
       value: '[UI]PauseScreen'
       objectReference: {fileID: 0}
     - target: {fileID: 6137072267942888790, guid: 516029564deeb534aa1924383ceb530d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6606843522845722873, guid: 516029564deeb534aa1924383ceb530d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

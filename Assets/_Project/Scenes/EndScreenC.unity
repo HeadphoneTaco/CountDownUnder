@@ -471,6 +471,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[UI]EndScreenC'
       objectReference: {fileID: 0}
+    - target: {fileID: 7207451436291086966, guid: 48dc36382ce48d24a85b99949178a3b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207451436291086966, guid: 48dc36382ce48d24a85b99949178a3b8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207451436291086966, guid: 48dc36382ce48d24a85b99949178a3b8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
