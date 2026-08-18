@@ -1029,6 +1029,38 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6576499065833262196, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576499065833262196, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576499065833262196, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576499065833262196, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454745155382040807, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454745155382040807, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454745155382040807, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454745155382040807, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7698160764697284912, guid: 862f43694fbf5ca4bb62b3f13c1f9f3b, type: 3}
       propertyPath: m_Name
       value: '[UI]GameVer3'
@@ -4191,7 +4223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04571ef1e7d6b5b4ea44f47d69204f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NightTimer
-  _nightDurationSeconds: 60
+  _nightDurationSeconds: 180
   _startOnAwake: 1
   _startHour: 4
   _endHour: 7
