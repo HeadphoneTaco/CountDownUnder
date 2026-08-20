@@ -4191,10 +4191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04571ef1e7d6b5b4ea44f47d69204f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NightTimer
-  _nightDurationSeconds: 180
+  _nightDurationSeconds: 90
   _startOnAwake: 1
-  _startHour: 4
-  _endHour: 7
+  _startHour: 3
+  _endHour: 6
 --- !u!114 &1721818104
 MonoBehaviour:
   m_ObjectHideFlags: 0
